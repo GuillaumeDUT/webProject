@@ -1,5 +1,43 @@
 *{margin:0;padding:0;}
+@import url('https://fonts.googleapis.com/css?family=Spectral+SC');
+
 #container {
-  width:100vw;
-  height:100vh;
+    width:100vw;
+    height:100vh;
+    margin: 0;
+    color: aliceblue;
 }
+
+
+body{
+      background-image: radial-gradient(circle at center, #1d1f20, #000000);
+   
+}
+
+
+#page1 {
+    margin-top: 20%;
+    color: #fff;
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+	letter-spacing: 5px;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Spectral SC', serif;
+    
+}
+
+
+
+input[type=submit]
+{
+    width: 200px;
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 55px;
+    border-radius: 10px;
+    padding: 5px 15px;
+    color: black;
+    transition: all 0.3s;
+    transition: background-color 0.5s; 
+}
+
