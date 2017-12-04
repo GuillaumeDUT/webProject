@@ -85,7 +85,7 @@ cSubmit.addEventListener('click',function(e){
       for(i in json.items){
         console.log(json.items[i]['id']) //récupère chaque id de chaque vidéo
       }
-      //console.log(json.items)
+      console.log(json.items)
     });
 
   }
