@@ -13,6 +13,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 
 var player;
+
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '360',
@@ -63,11 +64,32 @@ cSubmit.addEventListener('click',function(e){
   onPlayerReady(player.playVideo())
 
   //récup le titre d'une vidéo à partir de son ID en utilisant l'api youtube v3 
-  fetch('https://www.googleapis.com/youtube/v3/videos?id=bYPuz0EYPSo&key='+ytApiKey+'&part=snippet', {mode: 'cors'})
-    .then(function(response) {
-    return response.json();
-  })
-    .then(function(json){
-    console.log(json.items[0]["snippet"]["title"])
-  });
+  function retrieveTitleFromId(){
+    fetch('https://www.googleapis.com/youtube/v3/videos?id=bYPuz0EYPSo&key='+ytApiKey+'&part=snippet', {mode: 'cors'})
+      .then(function(response) {
+      return response.json();
+    })
+      .then(function(json){
+      //console.log(json.items[0]["snippet"]["title"])
+      return(json.items[0]["snippet"]["title"]);
+    });
+  }
+  
+  //récup les id des vidéos d'une playlist
+  function retrieveIdFromPlaylist(){
+    fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId= PLu1XMvYo5guTX7EkuUVX5lf_hedXF4_u-&key='+ytApiKey+'&maxResults=50',{mode: 'cors'})
+      .then(function(response) {
+      return response.json();
+    })
+      .then(function(json){
+      for(i in json.items){
+        console.log(json.items[i]['id']) //récupère chaque id de chaque vidéo
+      }
+      //console.log(json.items)
+    });
+
+  }
+
+  retrieveIdFromPlaylist();
+
 })
