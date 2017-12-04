@@ -51,6 +51,7 @@ input[type=submit]
     padding: 5px 15px;
     color: black;
     margin-right:27px;
+    text-align: center;
     
 }
 
@@ -68,6 +69,10 @@ input:focus{
     left: 0;
    
     
+}
+
+#player{
+    visibility: hidden;
 }
 
 .displayimportant2 {
