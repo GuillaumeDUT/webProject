@@ -63,7 +63,7 @@ input:focus{
     position: absolute;
     visibility: hidden;
       background-image: radial-gradient(circle at center, #1d1f20, #000000);
-    height: 100%;
+    height: 130%;
     width: 100%;
     top: 0;
     left: 0;
