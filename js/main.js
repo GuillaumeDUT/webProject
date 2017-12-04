@@ -63,7 +63,7 @@ cSubmit.addEventListener('click',function(e){
   onPlayerReady(player.playVideo())
 
   //récup le titre d'une vidéo à partir de son ID en utilisant l'api youtube v3 
-  fetch('https://www.googleapis.com/youtube/v3/videos?id=bYPuz0EYPSo&key=AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY&part=snippet', {mode: 'cors'})
+  fetch('https://www.googleapis.com/youtube/v3/videos?id=bYPuz0EYPSo&key='+ytApiKey+'&part=snippet', {mode: 'cors'})
     .then(function(response) {
     return response.json();
   })
