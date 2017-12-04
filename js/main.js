@@ -1,0 +1,41 @@
+var cSubmit=document.querySelector("#inputSubmit"); // BOUTTON SUBMIT 
+var cModule=document.querySelector("#module1"); // MODULE 
+var cTexteReady=document.querySelector("#Texte3");
+var count = 6;
+var affichetimer=document.querySelector('#count_num');
+
+
+
+cSubmit.addEventListener('click',function(e){
+    e.preventDefault();
+    cModule.classList.add("displayimportant");
+    cTexteReady.classList.add("displayimportant");
+   
+    document.querySelector('#inputreponse').focus();
+    
+    function anim() {
+    if (count > 0 ) {
+        console.log(count);
+        count--;
+        setTimeout(anim, 700);
+        if(count<4){
+        affichetimer.innerHTML=count;
+            }
+    }
+    if (count==0){
+        affichetimer.innerHTML=(' G O ! ')    
+        
+    }
+    
+   
+       
+    
+}
+anim();
+    
+    
+    
+    
+})
+
+
