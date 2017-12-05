@@ -140,8 +140,8 @@ cSubmit.addEventListener('click',function(e){
       console.log(json.items[i]['snippet']['resourceId']['videoId']) //récupère chaque id de chaque vidéo et les push dans le tab d'id
     }
     //console.log(json.items)
-  });
-}
+  })
+
 
 function afficherTab(){
     console.log("nique");
