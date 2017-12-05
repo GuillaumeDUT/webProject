@@ -39,7 +39,10 @@ function onPlayerStateChange(event) {
     done = true;
   }
   if(event.data == 0){
-    playEachMusic();
+    cInput.value = "";
+    compteur++;
+    cTitreReponse.innerHTML = idArray[compteur-1][1];
+    setTimeout(playEachMusic,timerBetweenMusic);
   }
 }
 function stopVideo() {
@@ -68,14 +71,13 @@ retrieveIdFromPlaylist();
 function anim() {
   if (count > 0 ) {
     count--;
-    setTimeout(anim, 1000);
     if(count<=3){
       affichetimer.innerHTML=count;
     }
+    setTimeout(anim, 1000);
   }
   if (count==0){
     affichetimer.innerHTML=('G O !');  
-
     onPlayerReady(player.playVideo());
   }
 }
@@ -89,6 +91,8 @@ function playEachMusic(){
                        'startSeconds': 40,
                        'endSeconds': 60,
                        'suggestedQuality': 'large'});
+  
+  count = 4;
   anim();
   musicToPlayIndex++;
 
@@ -99,8 +103,8 @@ function onPlayerReady(event) {
 cSkip.addEventListener('click',musiquesuivante);
 
 function musiquesuivante(e){ 
-    if (e)  
-      e.preventDefault();
+  if (e)  
+    e.preventDefault();
   playEachMusic();
 }
 
@@ -108,9 +112,9 @@ cSubmit.addEventListener('click',function(e){
   e.preventDefault();
   cModule.classList.add("displayimportant");
   cTexteReady.classList.add("displayimportant");
-  document.querySelector('#inputreponse').focus();
+  cInput.focus();
   playEachMusic();
-  
+
   //afficherTab();
 });
 
@@ -125,24 +129,27 @@ function afficherTab(){
 
 
 var compteur=0;
-var cInput = document.getElementById("inputreponse");
+var timerBetweenMusic = 3000;
+var cInput = document.getElementById("inputReponse");
+var cTitreReponse = document.getElementById("titreReponse");
 cInput.addEventListener('keyup',function(e){
-    
-    if (e.keyCode == 13) {
-        if ( verifiereponse(idArray[compteur][1],cInput.value) >= 0.5) {
-        console.log('GG')
-            score++;
-            scoreaffichage.innerHTML=score;
-            musiquesuivante();
-            compteur++;
+
+  if (e.keyCode == 13) {
+    if ( verifiereponse(idArray[compteur][1],cInput.value) >= 0.5) {
+      console.log('GG')
+      score++;
+      scoreaffichage.innerHTML=score;
+      cInput.value = "";
+      compteur++;
+      cTitreReponse.innerHTML = idArray[compteur-1][1];
+      setTimeout(musiquesuivante,timerBetweenMusic);
     }
-         else
-         {   console.log('Réessayer')
-        }
-        
-       
+    else
+    {   
+      console.log('Réessayez')
     }
-  
+  }
+
 });
 
 
@@ -177,7 +184,7 @@ function editDistance(s1, s2) {
           var newValue = costs[j - 1];
           if (s1.charAt(i - 1) != s2.charAt(j - 1))
             newValue = Math.min(Math.min(newValue, lastValue),
-              costs[j]) + 1;
+                                costs[j]) + 1;
           costs[j - 1] = lastValue;
           lastValue = newValue;
         }
