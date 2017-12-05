@@ -87,17 +87,30 @@ var musicToPlayIndex = 0;
 
 function playEachMusic(){
   //on queue la vidéo 
+  if(idArray[musicToPlayIndex] == undefined){
+    console.log("fin de la playlist")
+    endOfPlaylist();
+    musicToPlayIndex = 0;
+    return 0;
+  }
   player.cueVideoById({'videoId': idArray[musicToPlayIndex][0],
                        'startSeconds': 40,
                        'endSeconds': 60,
                        'suggestedQuality': 'large'});
-  
+
   count = 4;
   anim();
   musicToPlayIndex++;
 
 }
 function onPlayerReady(event) {
+}
+
+function endOfPlaylist(){
+  cModule.classList.remove("displayimportant");
+  cTexteReady.classList.remove("displayimportant");
+  return 0;
+
 }
 
 cSkip.addEventListener('click',musiquesuivante);
