@@ -2,6 +2,12 @@ var cSubmit = document.querySelector("#inputSubmit"); // BOUTTON SUBMIT
 var cModule = document.querySelector("#module1"); // MODULE 
 var cTexteReady = document.querySelector("#Texte3");
 var cSkip = document.getElementById("skip");
+
+var moduleEndOfGame = document.getElementById('moduleEndOfGame');
+var foundNbSongs = document.getElementById('foundNbSongs');
+var totalNbSongs = document.getElementById('totalNbSongs');
+
+
 var scoreaffichage=document.getElementById("idscore");
 var affichetimer=document.querySelector('#count_num');
 
@@ -69,6 +75,7 @@ retrieveIdFromPlaylist();
 
 
 function anim() {
+  cTitreReponse.innerHTML = "";
   if (count > 0 ) {
     count--;
     if(count<=3){
@@ -106,12 +113,7 @@ function playEachMusic(){
 function onPlayerReady(event) {
 }
 
-function endOfPlaylist(){
-  cModule.classList.remove("displayimportant");
-  cTexteReady.classList.remove("displayimportant");
-  return 0;
 
-}
 
 cSkip.addEventListener('click',musiquesuivante);
 
@@ -127,7 +129,6 @@ cSubmit.addEventListener('click',function(e){
   cTexteReady.classList.add("displayimportant");
   cInput.focus();
   playEachMusic();
-
   //afficherTab();
 });
 
@@ -149,6 +150,7 @@ cInput.addEventListener('keyup',function(e){
 
   if (e.keyCode == 13) {
     if ( verifiereponse(idArray[compteur][1],cInput.value) >= 0.5) {
+      stopVideo();
       console.log('GG')
       score++;
       scoreaffichage.innerHTML=score;
@@ -162,7 +164,6 @@ cInput.addEventListener('keyup',function(e){
       console.log('Réessayez')
     }
   }
-
 });
 
 
@@ -210,3 +211,16 @@ function editDistance(s1, s2) {
 }
 //retrieveIdFromPlaylist();
 
+function endOfPlaylist(){
+  cModule.classList.remove("displayimportant"); 
+  cTexteReady.classList.remove("displayimportant");
+  
+  
+  moduleEndOfGame.classList.add("displayEndOfGame");
+  
+  foundNbSongs.innerHTML = score;
+  totalNbSongs.innerHTML = idArray.length;
+
+  return 0;
+
+}
