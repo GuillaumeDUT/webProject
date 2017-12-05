@@ -2,13 +2,12 @@ var cSubmit = document.querySelector("#inputSubmit"); // BOUTTON SUBMIT
 var cModule = document.querySelector("#module1"); // MODULE 
 var cTexteReady = document.querySelector("#Texte3");
 var cSkip = document.getElementById("skip");
-
+var scoreaffichage=document.getElementById("idscore");
 var affichetimer=document.querySelector('#count_num');
 
 var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
-
-
 var count = 4; // compteur display
+var score=0;
 
 
 
@@ -100,8 +99,8 @@ function onPlayerReady(event) {
 cSkip.addEventListener('click',musiquesuivante);
 
 function musiquesuivante(e){ 
-if (e)  
-  e.preventDefault();
+    if (e)  
+      e.preventDefault();
   playEachMusic();
 }
 
@@ -111,6 +110,7 @@ cSubmit.addEventListener('click',function(e){
   cTexteReady.classList.add("displayimportant");
   document.querySelector('#inputreponse').focus();
   playEachMusic();
+  
   //afficherTab();
 });
 
@@ -124,18 +124,23 @@ function afficherTab(){
 
 
 
-
+var compteur=0;
 var cInput = document.getElementById("inputreponse");
 cInput.addEventListener('keyup',function(e){
     
     if (e.keyCode == 13) {
-        if ( verifiereponse(idArray[0][1],cInput.value) >= 0.5) {
+        if ( verifiereponse(idArray[compteur][1],cInput.value) >= 0.5) {
         console.log('GG')
+            score++;
+            scoreaffichage.innerHTML=score;
             musiquesuivante();
+            compteur++;
     }
-        else{
-            console.log('Perdu')
+         else
+         {   console.log('Réessayer')
         }
+        
+       
     }
   
 });
