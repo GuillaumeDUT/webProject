@@ -89,7 +89,7 @@ cSubmit.addEventListener('click',function(e){
   document.querySelector('#inputreponse').focus();
 
 
-<<<<<<< HEAD
+
   //récup le titre d'une vidéo à partir de son ID en utilisant l'api youtube v3 
   function retrieveTitleFromId(){
     fetch('https://www.googleapis.com/youtube/v3/videos?id=bYPuz0EYPSo&key='+ytApiKey+'&part=snippet', {mode: 'cors'})
@@ -116,9 +116,6 @@ cSubmit.addEventListener('click',function(e){
     });
 
   }
-=======
-  anim();
->>>>>>> 351effe2a97f0726b5ce09832ebd0d82ce0c688a
 
   
     player.cueVideoById({'videoId': idArray[2][0],
@@ -133,7 +130,6 @@ cSubmit.addEventListener('click',function(e){
 
 
 
-<<<<<<< HEAD
   fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLu1XMvYo5guTX7EkuUVX5lf_hedXF4_u-&key='+ytApiKey+'&maxResults=50',{mode: 'cors'})
     .then(function(response) {
     return response.json();
@@ -153,15 +149,5 @@ function afficherTab(){
     for(var i=0; i<idArray.length;i++){
       console.log(idArray[i]);
     }
-=======
-
-function afficherTab(){
-  //console.log("nique");
-  console.log(idArray);
-  for(var i=0; i<idArray.length;i++){
-    console.log(idArray[i]);
-  }
->>>>>>> 351effe2a97f0726b5ce09832ebd0d82ce0c688a
 }
-
 //retrieveIdFromPlaylist();
