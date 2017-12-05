@@ -18,11 +18,11 @@ body{
 #page1 , #page2 {
     margin-top: 20%;
     color: #fff;
-	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+	/*text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;*/  
 	letter-spacing: 5px;
     justify-content: center;
     text-align: center;
-    font-family: 'Spectral SC', serif;
+    font-family: 'Spectral SC', sans-serif;
     
 }
 
@@ -62,7 +62,7 @@ input:focus{
 #module1 {
     position: absolute;
     visibility: hidden;
-      background-image: radial-gradient(circle at center, #1d1f20, #000000);
+    background-image: radial-gradient(circle at center, #1d1f20, #000000);
     height: 130%;
     width: 100%;
     top: 0;
@@ -71,9 +71,9 @@ input:focus{
     
 }
 
-#player{
+/*#player{
     visibility: hidden;
-}
+}*/
 
 .displayimportant2 {
     visibility: visible !important;

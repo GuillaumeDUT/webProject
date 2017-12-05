@@ -1,17 +1,21 @@
-var cSubmit=document.querySelector("#inputSubmit"); // BOUTTON SUBMIT 
-var cModule=document.querySelector("#module1"); // MODULE 
-var cTexteReady=document.querySelector("#Texte3");
-var count = 6;
+var cSubmit = document.querySelector("#inputSubmit"); // BOUTTON SUBMIT 
+var cModule = document.querySelector("#module1"); // MODULE 
+var cTexteReady = document.querySelector("#Texte3");
+
 var affichetimer=document.querySelector('#count_num');
 
 var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
 
-var tag = document.createElement('script');
 
+var count = 4; // compteur display
+
+
+
+
+var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
 
 var player;
 
@@ -42,31 +46,50 @@ function onPlayerReady(event) {
 
 }
 
+
+//récup les id des vidéos d'une playlist et son titre et les fout dans un tableau de forme -> ['id','titre]
 var idArray = [];
+
+function retrieveIdFromPlaylist(){
+  fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLu1XMvYo5guTX7EkuUVX5lf_hedXF4_u-&key='+ytApiKey+'',{mode: 'cors'})
+    .then(function(response) {
+    return response.json();
+  })
+    .then(function(json){
+    for(i in json.items){
+      idArray.push([ json.items[i]['snippet']['resourceId']['videoId'] , json.items[i]['snippet']['title'] ]);
+      //console.log(json.items[i]['snippet']['resourceId']['videoId']) //récupère chaque id de chaque vidéo et les push dans le tab d'id
+    }
+    console.log(json.items)
+  });
+}
+retrieveIdFromPlaylist();
+
+
+function anim() {
+  if (count > 0 ) {
+    //console.log(count);
+    count--;
+    setTimeout(anim, 1000);
+    if(count<=3){
+      affichetimer.innerHTML=count;
+    }
+  }
+  if (count==0){
+    affichetimer.innerHTML=('G O !');  
+    
+    cModule.classList.add("displayimportant");
+    onPlayerReady(player.playVideo());
+  }
+}
 
 cSubmit.addEventListener('click',function(e){
   e.preventDefault();
-  cModule.classList.add("displayimportant");
   cTexteReady.classList.add("displayimportant");
-
   document.querySelector('#inputreponse').focus();
 
-  function anim() {
-    if (count > 0 ) {
-      //console.log(count);
-      count--;
-      setTimeout(anim, 700);
-      if(count<4){
-        affichetimer.innerHTML=count;
-      }
-    }
-    if (count==0){
-      affichetimer.innerHTML=(' G O ! ')    
-    }
-  }
-  anim();
-  onPlayerReady(player.playVideo())
 
+<<<<<<< HEAD
   //récup le titre d'une vidéo à partir de son ID en utilisant l'api youtube v3 
   function retrieveTitleFromId(){
     fetch('https://www.googleapis.com/youtube/v3/videos?id=bYPuz0EYPSo&key='+ytApiKey+'&part=snippet', {mode: 'cors'})
@@ -93,17 +116,24 @@ cSubmit.addEventListener('click',function(e){
     });
 
   }
+=======
+  anim();
+>>>>>>> 351effe2a97f0726b5ce09832ebd0d82ce0c688a
 
-  retrieveIdFromPlaylist();
-  afficherTab();
+  
+    player.cueVideoById({'videoId': idArray[2][0],
+                          'startSeconds': 40,
+                          'endSeconds': 60,
+                          'suggestedQuality': 'large'});
+  
+  //afficherTab();
 
 });
 
 
-  //récup les id des vidéos d'une playlist et son titre et les fout dans un tableau de forme -> ['id','titre]
 
-function retrieveIdFromPlaylist(){
 
+<<<<<<< HEAD
   fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLu1XMvYo5guTX7EkuUVX5lf_hedXF4_u-&key='+ytApiKey+'&maxResults=50',{mode: 'cors'})
     .then(function(response) {
     return response.json();
@@ -123,6 +153,15 @@ function afficherTab(){
     for(var i=0; i<idArray.length;i++){
       console.log(idArray[i]);
     }
+=======
+
+function afficherTab(){
+  //console.log("nique");
+  console.log(idArray);
+  for(var i=0; i<idArray.length;i++){
+    console.log(idArray[i]);
+  }
+>>>>>>> 351effe2a97f0726b5ce09832ebd0d82ce0c688a
 }
 
 //retrieveIdFromPlaylist();
