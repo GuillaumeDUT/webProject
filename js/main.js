@@ -38,14 +38,14 @@ function onPlayerStateChange(event) {
     setTimeout(stopVideo, 60000);
     done = true;
   }
+  if(event.data == 0){
+    playEachMusic();
+  }
 }
 function stopVideo() {
   player.stopVideo();
 }
 
-function onPlayerReady(event) {
-
-}
 
 
 //récup les id des vidéos d'une playlist et son titre et les fout dans un tableau de forme -> ['id','titre]
@@ -82,6 +82,7 @@ function anim() {
   }
 }
 
+
 var musicToPlayIndex = 0;
 
 function playEachMusic(){
@@ -90,11 +91,12 @@ function playEachMusic(){
                        'startSeconds': 40,
                        'endSeconds': 60,
                        'suggestedQuality': 'large'});
-
   anim();
   musicToPlayIndex++;
-}
 
+}
+function onPlayerReady(event) {
+}
 
 cSkip.addEventListener('click',function(e){
   e.preventDefault();
@@ -111,9 +113,6 @@ cSubmit.addEventListener('click',function(e){
   playEachMusic();
   //afficherTab();
 });
-
-
-
 
 
 function afficherTab(){
