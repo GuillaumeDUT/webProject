@@ -134,7 +134,6 @@ function playEachMusic(){
                        'suggestedQuality': 'large'});
 
   count = 4;
-    testtimer=20;
   progressMusic.classList.remove("animMusicProgression");
 
   anim();
@@ -196,7 +195,9 @@ if (testtimer!=0){
       compteur++;
       cTitreReponse.innerHTML = idArray[compteur-1][1];
        clearTimeout(timeOut);
-        playEachMusic();    
+        
+        var testtimer=20;
+        playEachMusic();   
     }
     else
     {   
