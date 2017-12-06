@@ -1,5 +1,5 @@
 *{margin:0;padding:0;}
-@import url('https://fonts.googleapis.com/css?family=Spectral+SC');
+@import url('https://fonts.googleapis.com/css?family=Anton|Open+Sans:600');
 
 #container {
   width:100vw;
@@ -17,16 +17,27 @@ body{
 
 }
 
+#Texte1{
+    
+    font-size: 200px;
+}
+
+#Texte2bis{
+    font-size:30px;
+}
+#Texte2bisbis{
+    font-size: 20px;
+    text-decoration:line-through;
+}
 
 #page1 , #page2 {
   height:100%;
   font-size:2rem;
-  color: rgba(0, 0, 0, 0);
-  text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px #ff2d95, 0 0 15px #ff2d95, 0 0 20px #ff2d95, 0 0 25px #ff2d95, 0 0 37px #ff2d95;  
+  color: whitesmoke;
   letter-spacing: 5px;
   justify-content: center;
   text-align: center;
-  font-family: 'Spectral SC', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #count_num{
