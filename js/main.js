@@ -81,7 +81,20 @@ function retrieveIdFromPlaylist(){
 }
 retrieveIdFromPlaylist();
 
-var timeOut;
+
+var testtimer=20;
+function animtest(){
+if (testtimer > 0 ) {
+    testtimer--;
+    setTimeout(animtest, 1000);
+  }
+ 
+  }
+
+
+
+
+
 
 function anim() {
   cTitreReponse.innerHTML = "";
@@ -98,7 +111,6 @@ function anim() {
     onPlayerReady(player.playVideo());
     timeOut = setTimeout(stopVideo,20000);
 
-    return 0;
   }
 }
 
@@ -122,9 +134,11 @@ function playEachMusic(){
                        'suggestedQuality': 'large'});
 
   count = 4;
+    testtimer=20;
   progressMusic.classList.remove("animMusicProgression");
 
   anim();
+    animtest();
   musicToPlayIndex++;
 
 }
@@ -170,6 +184,8 @@ var timerBetweenMusic = 3000;
 var cInput = document.getElementById("inputReponse");
 var cTitreReponse = document.getElementById("titreReponse");
 cInput.addEventListener('keyup',function(e){
+
+if (testtimer!=0){    
   if (e.keyCode == 13) {
     if ( verifiereponse(idArray[compteur][1],cInput.value) >= 0.5) {
       stopVideo();
@@ -179,13 +195,22 @@ cInput.addEventListener('keyup',function(e){
       cInput.value = "";
       compteur++;
       cTitreReponse.innerHTML = idArray[compteur-1][1];
-      setTimeout(musiquesuivante,timerBetweenMusic);
+       clearTimeout(timeOut);
+        playEachMusic();    
     }
     else
     {   
       console.log('Réessayez')
     }
+      
   }
+}
+    if(testtimer==0){
+        
+        playEachMusic();    
+        
+    }
+    
 });
 
 
@@ -245,3 +270,5 @@ getBackHomeButton.addEventListener('click',function(e){
   moduleEndOfGame.classList.remove("displayEndOfGame");
 });
 
+console.log(testtimer)
+console.log(count)
