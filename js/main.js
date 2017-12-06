@@ -260,7 +260,7 @@ function endOfPlaylist(){
   moduleEndOfGame.classList.add("displayEndOfGame");
   stopVideo();
   progressMusic.classList.remove("animMusicProgression");
-  foundNbSongs.innerHTML = score;
+  foundNbSongs.innerHTML = score+1;
   musicToPlayIndex = 0;
   totalNbSongs.innerHTML = idArray.length;
 }
