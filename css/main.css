@@ -2,12 +2,15 @@
 @import url('https://fonts.googleapis.com/css?family=Spectral+SC');
 
 #container {
-  width:100%;
-  height:100%;
-  margin: 0;
-  color: aliceblue;
+  width:100vw;
+  height:100vh;
+  color:aliceblue;
 }
-
+.containerPage{
+  position:relative;
+  top:50%;
+  transform:translate3d(0,-50%,0);
+}
 
 body{
   background-image: radial-gradient(circle at center, #1d1f20, #000000);
@@ -16,7 +19,7 @@ body{
 
 
 #page1 , #page2 {
-  margin-top: 20%;
+  height:100%;
   font-size:2rem;
   color: rgba(0, 0, 0, 0);
   text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px #ff2d95, 0 0 15px #ff2d95, 0 0 20px #ff2d95, 0 0 25px #ff2d95, 0 0 37px #ff2d95;  
@@ -24,24 +27,21 @@ body{
   justify-content: center;
   text-align: center;
   font-family: 'Spectral SC', sans-serif;
-
 }
 
 #count_num{
   font-size: 500%;
 }
 
-input[type=submit]
-{
+#inputSubmit {
   width: 200px;
   height: 40px;
-  margin: 0 auto;
+  margin:auto;
   margin-top: 55px;
   border-radius: 10px;
   padding: 5px 15px;
   color: black;
-  transition: all 0.3s;
-  transition: background-color 0.5s; 
+  display:none;
 }
 
 #inputReponse{
@@ -51,7 +51,6 @@ input[type=submit]
   border-radius: 10px;
   padding: 5px 15px;
   color: black;
-  margin-right:27px;
   text-align: center;
 
 }
@@ -60,7 +59,7 @@ input:focus{
   outline:none;
 }
 
-#module1 {
+#page2{
   position: absolute;
   visibility: hidden;
   background-image: radial-gradient(circle at center, #1d1f20, #000000);
@@ -68,39 +67,15 @@ input:focus{
   width: 100%;
   top: 0;
   left: 0;
-
-
-}
-
+}/*
 #player{
   display:none;
-}
-
-.displayimportant2 {
-  visibility: visible !important;
-  animation-name: fade;
-  animation-fill-mode: forwards;
-  animation-duration: 10s;
-}
+}*/
 
 .displayimportant {
   visibility: visible !important;
-  animation-name: fade;
-  animation-fill-mode: forwards;
-  animation-duration: 3s;
 }
 
-
-@keyframes fade {
-  from {
-
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-
-}
 #moduleEndOfGame{
   width:100%;
   height:100%;
@@ -122,3 +97,39 @@ input:focus{
 .displayEndOfGame{
   visibility: visible !important;
 }
+#getBackToHome {
+  width:200px;
+  height:50px;
+  border:none;
+}
+
+
+#progressionMusique {
+  height:2px;
+  position:absolute;
+  background-color:white;
+  bottom:0;
+  left:0;
+  width:0%;
+}
+.animMusicProgression{
+  animation-name: musicBar;
+  animation-duration:20s;
+  animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+@keyframes musicBar{
+  0%{
+    width:0%;
+  }
+  100%{
+    width:100%;
+  }
+}
+
+
+
+

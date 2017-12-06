@@ -9,32 +9,38 @@
   <body>
     <div id="container"> 
       <div id="page1">
-        <h1 id=Texte1> À quel point êtes-vous IMAC ? </h1>
-        <h2 id="Texte2"> Blind Test Jeudimac </h2>
+        <div class="containerPage">
+          <h1 id=Texte1> À quel point êtes-vous IMAC ? </h1>
+          <h2 id="Texte2"> Blind Test Jeudimac </h2>
 
-        <input id="inputSubmit" class="bold" type="submit" value="Commencer le test.">
+          <input id="inputSubmit" class="bold" type="submit" value="Commencer le test.">
+        </div>
       </div>
-      <div id="module1">
-        <p> Score : <span id="idscore">0</span></p>
-        <div id="page2">
-          <h3 id="Texte3">On espère que vous êtes prêts !</h3>
-          <br/>
-          <span id="count_num">3</span>
-          <br/>
+      <div id="page2">
+        <div class="containerPage">
 
-          <br/>
-          Réponse : <span id="titreReponse"></span>
-          <br/>
-          <br/>
-          <button id="skip">Skip</button>
-          <input id="inputReponse" name="reponse" type="text" value="" autofocus="autofocus" /> 
-        </div>    
-        <div id="player"></div>
+          <p> Score : <span id="idscore">0</span></p>
+          <div id="containerPage2">
+            <h3 id="Texte3">On espère que vous êtes prêts !</h3>
+            <span id="count_num">3</span>
+
+            <p>
+              Réponse : <span id="titreReponse"></span>
+            </p>
+            <input id="inputReponse" name="reponse" type="text" value="" autofocus="autofocus" /> <br/>
+
+            <button id="skip">Skip</button>
+          </div>
+
+          <div id="player"></div>
+        </div> 
       </div>
       <div id="moduleEndOfGame">
-        <p>Merci d'avoir joué ! <br/>Vous avez trouvé : <span id="foundNbSongs"></span> chansons sur <span id="totalNbSongs"></span> !</p>
+        <p>Merci d'avoir joué ! <br/>Vous avez trouvé : <span id="foundNbSongs"></span> chansons sur <span id="totalNbSongs"></span> !<br/><button id="getBackToHome">Revenir à l'accueil</button></p>
+
       </div>
     </div>
+    <div id="progressionMusique"></div>
     <script type="text/javascript" src="js/main.js">
     </script>
   </body>
