@@ -59,7 +59,7 @@ function onPlayerStateChange(event) {
   }*/
   if(event.data == 0){
     cInput.value = "";
-    compteur++;
+    //compteur++;
     cTitreReponse.innerHTML = idArrayCopyForRandom[randomMusic][1];
     setTimeout(playEachMusic,timerBetweenMusic);
   }
