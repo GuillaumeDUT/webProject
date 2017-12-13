@@ -18,6 +18,8 @@ var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
 var count = 4; // compteur display
 var score=0;
 
+
+var randomMusic;
 var idArrayCopyForRandom = [];
 
 document.addEventListener('DOMContentLoaded',function(){
@@ -58,7 +60,7 @@ function onPlayerStateChange(event) {
   if(event.data == 0){
     cInput.value = "";
     compteur++;
-    cTitreReponse.innerHTML = idArray[compteur-1][1];
+    cTitreReponse.innerHTML = idArrayCopyForRandom[randomMusic][1];
     setTimeout(playEachMusic,timerBetweenMusic);
   }
 }
@@ -128,11 +130,11 @@ function progressionMusicBar(){
   progressMusic.classList.add("animMusicProgression");
 }
 
-
+var randomMusic;
 
 function playEachMusic(){
   //on queue la vidéo 
-  var randomMusic = Math.floor(Math.random()* (idArrayCopyForRandom.length - 0)) + 0;
+   randomMusic = Math.floor(Math.random()* (idArrayCopyForRandom.length - 0)) + 0;
   
   if(idArrayCopyForRandom[randomMusic] == undefined){
     console.log("fin de la playlist")
@@ -144,8 +146,6 @@ function playEachMusic(){
                        'startSeconds': 40,
                        'endSeconds': 60,
                        'suggestedQuality': 'large'});
-  idArrayCopyForRandom.splice(randomMusic,1);
-
   count = 4;
   progressMusic.classList.remove("animMusicProgression");
   
@@ -199,17 +199,18 @@ cInput.addEventListener('keyup',function(e){
 
   if (testtimer!=0){    
     if (e.keyCode == 13) {
-      if ( verifiereponse(idArray[compteur][1],cInput.value) >= 0.5) {
+      if ( verifiereponse(idArrayCopyForRandom[randomMusic][1],cInput.value) >= 0.5) {
         stopVideo();
         console.log('GG')
         score++;
         scoreaffichage.innerHTML=score;
         cInput.value = "";
         compteur++;
-        cTitreReponse.innerHTML = idArray[compteur-1][1];
+        cTitreReponse.innerHTML = idArrayCopyForRandom[randomMusic][1];
         clearTimeout(timeOut);
 
         var testtimer=20;
+        idArrayCopyForRandom.splice(randomMusic,1);
         setTimeout(playEachMusic,3000);   
       }
       else
@@ -274,7 +275,7 @@ function endOfPlaylist(){
   moduleEndOfGame.classList.add("displayEndOfGame");
   stopVideo();
   progressMusic.classList.remove("animMusicProgression");
-  foundNbSongs.innerHTML = score+1;
+  foundNbSongs.innerHTML = score;
   musicToPlayIndex = 0;
   totalNbSongs.innerHTML = idArray.length;
   duplicateFetchArray();
