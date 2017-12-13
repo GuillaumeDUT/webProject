@@ -271,5 +271,5 @@ getBackHomeButton.addEventListener('click',function(e){
   moduleEndOfGame.classList.remove("displayEndOfGame");
 });
 
-console.log(testtimer)
-console.log(count)
+//console.log(testtimer)
+//console.log(count)
