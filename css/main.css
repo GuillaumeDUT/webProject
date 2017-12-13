@@ -30,6 +30,77 @@ body{
     text-decoration:line-through;
 }
 
+#textevolume{
+    position: fixed;
+    font-size: 12px;
+    right : 70px;
+    top : 20px;
+}
+
+#iconevolume{
+    transform: scale(0.05,0.05);
+    position: fixed;
+    top: -207px;
+    right:-60px;
+    
+}
+
+#iconevolume2{
+     transform: scale(0.05,0.05);
+    position: fixed;
+    top: -207px;
+    right:-230px;
+}
+
+
+
+#volume {
+    transform: scale(0.8,0.8);
+    position: fixed;
+    top:20px;
+    right: 35px;
+}
+  
+    
+
+}
+input[type=range]::-webkit-slider-runnable-track {
+    z-index: 2;
+    width: 150px;
+    height: 5px;
+}
+
+
+
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 10px;
+    width: 15px;
+    border-radius: 3px;
+    /* background: #c30; */
+    margin-top: -5px;
+    background: rgba(213,210,202,1);
+    background: -moz-linear-gradient(top, rgba(213,210,202,1) 0%, rgba(224,220,213,1) 50%, rgba(213,209,202,1) 50%, rgba(224,221,213,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(213,210,202,1)), color-stop(50%, rgba(224,220,213,1)), color-stop(50%, rgba(213,209,202,1)), color-stop(100%, rgba(224,221,213,1)));
+    background: -webkit-linear-gradient(top, rgba(213,210,202,1) 0%, rgba(224,220,213,1) 50%, rgba(213,209,202,1) 50%, rgba(224,221,213,1) 100%);
+    background: -o-linear-gradient(top, rgba(213,210,202,1) 0%, rgba(224,220,213,1) 50%, rgba(213,209,202,1) 50%, rgba(224,221,213,1) 100%);
+    background: -ms-linear-gradient(top, rgba(213,210,202,1) 0%, rgba(224,220,213,1) 50%, rgba(213,209,202,1) 50%, rgba(224,221,213,1) 100%);
+    background: linear-gradient(to bottom, rgba(213,210,202,1) 0%, rgba(224,220,213,1) 50%, rgba(213,209,202,1) 50%, rgba(224,221,213,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5d2ca', endColorstr='#e0ddd5', GradientType=0 );
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+
+
+
 #page1 , #page2 {
   height:100%;
   font-size:2rem;
@@ -141,6 +212,16 @@ input:focus{
   }
 }
 
+ input[type=range] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+    
+    /*fix for FF unable to apply focus style bug */
+    border: 1px solid white;
+    
+    /*required for proper track sizing in FF*/
+    width: 150px;
+  
+}
 
-
-
+//

@@ -47,7 +47,9 @@ function onYouTubeIframeAPIReady() {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
     }
+      
   });
+
 }
 
 var done = false;
@@ -64,8 +66,13 @@ function onPlayerStateChange(event) {
     setTimeout(playEachMusic,timerBetweenMusic);
   }
 }
+
 function stopVideo() {
   player.stopVideo();
+}
+
+function unMute() {
+    player.unMute();
 }
 
 //récup les id des vidéos d'une playlist et son titre et les fout dans un tableau de forme -> ['id','titre]
@@ -94,6 +101,7 @@ function duplicateFetchArray(){
   }
 }
 
+
 var testtimer=20;
 function animtest(){
   if (testtimer > 0 ) {
@@ -118,7 +126,8 @@ function anim() {
     setTimeout(anim, 1000);
   }
   if (count==0){
-    affichetimer.innerHTML=('G O !');  
+    affichetimer.innerHTML=('G O !'); 
+    unMute();
     progressionMusicBar();
     onPlayerReady(player.playVideo());
     timeOut = setTimeout(stopVideo,20000);
@@ -134,6 +143,7 @@ var randomMusic;
 
 function playEachMusic(){
   //on queue la vidéo 
+   player.setVolume(100);      
    randomMusic = Math.floor(Math.random()* (idArrayCopyForRandom.length - 0)) + 0;
   
   if(idArrayCopyForRandom[randomMusic] == undefined){
@@ -142,6 +152,7 @@ function playEachMusic(){
     //musicToPlayIndex = 0;
     return 0;
   }
+   
   player.cueVideoById({'videoId': idArrayCopyForRandom[randomMusic][0],
                        'startSeconds': 40,
                        'endSeconds': 60,
@@ -154,6 +165,8 @@ function playEachMusic(){
  // musicToPlayIndex++;
 
 }
+
+
 function onPlayerReady(event) {
 }
 
@@ -208,7 +221,6 @@ cInput.addEventListener('keyup',function(e){
         compteur++;
         cTitreReponse.innerHTML = idArrayCopyForRandom[randomMusic][1];
         clearTimeout(timeOut);
-
         var testtimer=20;
         idArrayCopyForRandom.splice(randomMusic,1);
         setTimeout(playEachMusic,3000);   
@@ -227,6 +239,10 @@ cInput.addEventListener('keyup',function(e){
   }
 
 });
+
+
+
+
 
 
 function verifiereponse(s1, s2) {
@@ -288,3 +304,7 @@ getBackHomeButton.addEventListener('click',function(e){
 
 //console.log(testtimer)
 //console.log(count)
+
+
+
+
