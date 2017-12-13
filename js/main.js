@@ -18,6 +18,8 @@ var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
 var count = 4; // compteur display
 var score=0;
 
+var idArrayCopyForRandom = [];
+
 document.addEventListener('DOMContentLoaded',function(){
   cSubmit.style.display="block";
 
@@ -77,19 +79,27 @@ function retrieveIdFromPlaylist(){
       //console.log(json.items[i]['snippet']['resourceId']['videoId']) //récupère chaque id de chaque vidéo et les push dans le tab d'id
     }
     //console.log(json.items)
+    duplicateFetchArray();
   });
+
 }
 retrieveIdFromPlaylist();
 
 
+function duplicateFetchArray(){
+  for(var i = 0;i<idArray.length;i++){
+    idArrayCopyForRandom[i] = idArray[i];
+  }
+}
+
 var testtimer=20;
 function animtest(){
-if (testtimer > 0 ) {
+  if (testtimer > 0 ) {
     testtimer--;
     setTimeout(animtest, 1000);
   }
- 
-  }
+
+}
 
 
 
@@ -122,23 +132,26 @@ function progressionMusicBar(){
 
 function playEachMusic(){
   //on queue la vidéo 
-  if(idArray[musicToPlayIndex] == undefined){
+  var randomMusic = Math.floor(Math.random()* (idArrayCopyForRandom.length - 0)) + 0;
+  
+  if(idArrayCopyForRandom[randomMusic] == undefined){
     console.log("fin de la playlist")
     endOfPlaylist();
-    musicToPlayIndex = 0;
+    //musicToPlayIndex = 0;
     return 0;
   }
-  player.cueVideoById({'videoId': idArray[musicToPlayIndex][0],
+  player.cueVideoById({'videoId': idArrayCopyForRandom[randomMusic][0],
                        'startSeconds': 40,
                        'endSeconds': 60,
                        'suggestedQuality': 'large'});
+  idArrayCopyForRandom.splice(randomMusic,1);
 
   count = 4;
   progressMusic.classList.remove("animMusicProgression");
-
+  
   anim();
-    animtest();
-  musicToPlayIndex++;
+  //animtest();
+ // musicToPlayIndex++;
 
 }
 function onPlayerReady(event) {
@@ -184,34 +197,34 @@ var cInput = document.getElementById("inputReponse");
 var cTitreReponse = document.getElementById("titreReponse");
 cInput.addEventListener('keyup',function(e){
 
-if (testtimer!=0){    
-  if (e.keyCode == 13) {
-    if ( verifiereponse(idArray[compteur][1],cInput.value) >= 0.5) {
-      stopVideo();
-      console.log('GG')
-      score++;
-      scoreaffichage.innerHTML=score;
-      cInput.value = "";
-      compteur++;
-      cTitreReponse.innerHTML = idArray[compteur-1][1];
-       clearTimeout(timeOut);
-        
+  if (testtimer!=0){    
+    if (e.keyCode == 13) {
+      if ( verifiereponse(idArray[compteur][1],cInput.value) >= 0.5) {
+        stopVideo();
+        console.log('GG')
+        score++;
+        scoreaffichage.innerHTML=score;
+        cInput.value = "";
+        compteur++;
+        cTitreReponse.innerHTML = idArray[compteur-1][1];
+        clearTimeout(timeOut);
+
         var testtimer=20;
-        playEachMusic();   
+        setTimeout(playEachMusic,3000);   
+      }
+      else
+      {   
+        console.log('Réessayez')
+      }
+
     }
-    else
-    {   
-      console.log('Réessayez')
-    }
-      
   }
-}
-    if(testtimer==0){
-        
-        playEachMusic();    
-        
-    }
-    
+  if(testtimer==0){
+
+    playEachMusic();    
+
+  }
+
 });
 
 
@@ -264,6 +277,7 @@ function endOfPlaylist(){
   foundNbSongs.innerHTML = score+1;
   musicToPlayIndex = 0;
   totalNbSongs.innerHTML = idArray.length;
+  duplicateFetchArray();
 }
 
 getBackHomeButton.addEventListener('click',function(e){
