@@ -22,6 +22,7 @@ var score=0;
 var randomMusic;
 var idArrayCopyForRandom = [];
 
+
 document.addEventListener('DOMContentLoaded',function(){
   cSubmit.style.display="block";
 
@@ -46,7 +47,7 @@ function onYouTubeIframeAPIReady() {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
     }
-      
+
   });
 
 }
@@ -54,10 +55,11 @@ function onYouTubeIframeAPIReady() {
 var done = false;
 //gère les évents des vidéos
 function onPlayerStateChange(event) {
-  /*if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 60000);
+  if (event.data == YT.PlayerState.PLAYING && !done) {
+    setTimeout(stopVideo, 20000);
+    setTimeout(playEachMusic,20000);
     done = true;
-  }*/
+  }
   if(event.data == 0){
     cInput.value = "";
     //compteur++;
@@ -71,7 +73,7 @@ function stopVideo() {
 }
 
 function unMute() {
-    player.unMute();
+  player.unMute();
 }
 
 //récup les id des vidéos d'une playlist et son titre et les fout dans un tableau de forme -> ['id','titre]
@@ -86,7 +88,6 @@ function retrieveIdFromPlaylist(){
       idArray.push([ json.items[i]['snippet']['resourceId']['videoId'] , json.items[i]['snippet']['title'] ]);
       //console.log(json.items[i]['snippet']['resourceId']['videoId']) //récupère chaque id de chaque vidéo et les push dans le tab d'id
     }
-    //console.log(json.items)
     duplicateFetchArray();
   });
 
@@ -99,21 +100,6 @@ function duplicateFetchArray(){
     idArrayCopyForRandom[i] = idArray[i];
   }
 }
-
-
-var testtimer=20;
-function animtest(){
-  if (testtimer > 0 ) {
-    testtimer--;
-    setTimeout(animtest, 1000);
-  }
-
-}
-
-
-
-
-
 
 function anim() {
   cTitreReponse.innerHTML = "";
@@ -129,7 +115,6 @@ function anim() {
     unMute();
     progressionMusicBar();
     onPlayerReady(player.playVideo());
-    timeOut = setTimeout(stopVideo,20000);
 
   }
 }
@@ -139,29 +124,35 @@ function progressionMusicBar(){
 }
 
 var randomMusic;
+var firstTime=true;
 
 function playEachMusic(){
+  cTitreReponse.innerHTML = "";
   //on queue la vidéo 
-   player.setVolume(100);      
-   randomMusic = Math.floor(Math.random()* (idArrayCopyForRandom.length - 0)) + 0;
-  
+  player.setVolume(100);
+  if(randomMusic !=  null && firstTime == true){
+    idArrayCopyForRandom.splice(randomMusic,1);
+    firstTime=false;
+  }
+  randomMusic = Math.floor(Math.random()* (idArrayCopyForRandom.length - 0)) + 0;
+
   if(idArrayCopyForRandom[randomMusic] == undefined){
     console.log("fin de la playlist")
     endOfPlaylist();
     //musicToPlayIndex = 0;
     return 0;
   }
-   
+
   player.cueVideoById({'videoId': idArrayCopyForRandom[randomMusic][0],
                        'startSeconds': 40,
                        'endSeconds': 60,
                        'suggestedQuality': 'large'});
   count = 4;
   progressMusic.classList.remove("animMusicProgression");
-  
+
   anim();
   //animtest();
- // musicToPlayIndex++;
+  // musicToPlayIndex++;
 
 }
 
@@ -173,17 +164,10 @@ function onPlayerReady(event) {
 
 cSkip.addEventListener('click',function(e){
   e.preventDefault();
-  clearTimeout(timeOut);
   idArrayCopyForRandom.splice(randomMusic,1);
   playEachMusic();
 
 });
-
-function musiquesuivante(e){ 
-  if (e)  
-    e.preventDefault();
-
-}
 
 cSubmit.addEventListener('click',function(e){
   e.preventDefault();
@@ -210,39 +194,26 @@ var cInput = document.getElementById("inputReponse");
 var cTitreReponse = document.getElementById("titreReponse");
 cInput.addEventListener('keyup',function(e){
 
-  if (testtimer!=0){    
-    if (e.keyCode == 13) {
-      if ( verifiereponse(idArrayCopyForRandom[randomMusic][1],cInput.value) >= 0.5) {
-        stopVideo();
-        console.log('GG')
-        score++;
-        scoreaffichage.innerHTML=score;
-        cInput.value = "";
-        compteur++;
-        cTitreReponse.innerHTML = idArrayCopyForRandom[randomMusic][1];
-        clearTimeout(timeOut);
-        var testtimer=20;
-        idArrayCopyForRandom.splice(randomMusic,1);
-        setTimeout(playEachMusic,3000);   
-      }
-      else
-      {   
-        console.log('Réessayez')
-      }
-
+  if (e.keyCode == 13) {
+    if ( verifiereponse(idArrayCopyForRandom[randomMusic][1],cInput.value) >= 0.5) {
+      stopVideo();
+      console.log('GG')
+      score++;
+      scoreaffichage.innerHTML=score;
+      cInput.value = "";
+      compteur++;
+      cTitreReponse.innerHTML = idArrayCopyForRandom[randomMusic][1];
+      idArrayCopyForRandom.splice(randomMusic,1);
+      setTimeout(playEachMusic,3000);   
     }
-  }
-  if(testtimer==0){
-
-    playEachMusic();    
+    else
+    {   
+      console.log('Réessayez')
+    }
 
   }
 
 });
-
-
-
-
 
 
 function verifiereponse(s1, s2) {
