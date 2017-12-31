@@ -5,6 +5,7 @@ var finJeu = document.getElementById('finJeu');
 var skipButton = document.getElementById('skipButton');
 var nbTotalMusiques = document.getElementById('nbTotalMusiques');
 var scoreFinal = document.getElementById('scoreFinal');
+var scoreEnJeu = document.getElementById('scoreEnJeu');
 var restart = document.getElementById('restart');
 var titreMusique = document.getElementById('titreMusique');
 
@@ -27,7 +28,12 @@ inputSubmit.addEventListener('click',function(e){
 //ecoute ce qu'on tape
 inputReponse.addEventListener('keyup',function(e){
   e.preventDefault();
-  console.log(this.value)
+  //console.log(this.value)
+  if (e.keyCode == 13) {
+    if ( verifiereponse(dataFromAPI[randomMusic][1],inputReponse.value) >= 0.5) {
+      reponseTrouvee();
+    }
+  }
 
 });
 
@@ -138,8 +144,10 @@ function finDuJeu(){
 }
 
 
+//faut clear la variable tick quand on veut pas que cette fonction recommence
 function tickPlayer(){
-  if(player.getCurrentTime() > 45){
+   player.playVideo();
+  if(player.getCurrentTime() > 60){
 
     console.log('wesh')
     clearInterval(tick);
@@ -155,7 +163,64 @@ function tickPlayer(){
 
 function musiqueNonTrouvee(){
   titreMusique.innerHTML = dataFromAPI[randomMusic][1];
+  setTimeout(nextMusique,5000);
+}
+
+function reponseTrouvee(){
+  clearInterval(tick);
+  titreMusique.innerHTML = dataFromAPI[randomMusic][1];
+  score++;
+  scoreEnJeu.innerHTML = score;
+  inputReponse.value = "";
   setTimeout(nextMusique,3000);
+}
+
+
+
+
+
+//############## DISTANCE DE LEVHENMACHIN LA
+
+
+function verifiereponse(s1, s2) {
+  var longer = s1;
+  var shorter = s2;
+  if (s1.length < s2.length) {
+    longer = s2;
+    shorter = s1;
+  }
+  var longerLength = longer.length;
+  if (longerLength == 0) {
+    return 1.0;
+  }
+  return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
+}
+
+function editDistance(s1, s2) {
+  s1 = s1.toLowerCase();
+  s2 = s2.toLowerCase();
+
+  var costs = new Array();
+  for (var i = 0; i <= s1.length; i++) {
+    var lastValue = i;
+    for (var j = 0; j <= s2.length; j++) {
+      if (i == 0)
+        costs[j] = j;
+      else {
+        if (j > 0) {
+          var newValue = costs[j - 1];
+          if (s1.charAt(i - 1) != s2.charAt(j - 1))
+            newValue = Math.min(Math.min(newValue, lastValue),
+                                costs[j]) + 1;
+          costs[j - 1] = lastValue;
+          lastValue = newValue;
+        }
+      }
+    }
+    if (i > 0)
+      costs[s2.length] = lastValue;
+  }
+  return costs[s2.length];
 }
 
 
