@@ -7,29 +7,38 @@
     <link href="css/main.css" type="text/css" rel="stylesheet"/>
   </head>
   <body>
-   
-    <input id="inputSubmit" class="bold" type="submit" value="Commencer le test.">
+
+    <div class="wrapperHomeContent">
+
+      <button id="inputSubmit" class="wrapperCenter">Commencer le test. </button>
+    </div>
 
     <div id="wrapperJeu">
-     
-      <p id="wrapperScore"> Score : <span id="scoreEnJeu">0</span></p>
-      
-<!--
-      <span id="count_num">3</span>
+      <div class="wrapperCenter">
+
+
+        <p id="wrapperScore"> Score : <span id="scoreEnJeu">0</span></p>
+
+        <!--
+<span id="count_num">3</span>
 -->
-      <p>
-        Réponse : <span id="titreMusique"></span>
-      </p>
-      <input id="inputReponse" name="reponse" type="text" value="" autofocus="autofocus" /> <br/>
 
-      <button id="skipButton">Skip</button>
+        <p>
+          Réponse : <span id="titreMusique"></span>
+        </p>
+        <input id="inputReponse" name="reponse" type="text" value="" autofocus="autofocus" /> <br/>
+
+        <button id="skipButton">Skip</button><br/>
 
 
-      <div id="player"></div>
+        <div id="player"></div>
+      </div>
     </div>
 
     <div id="finJeu">
-      <p>Merci d'avoir joué ! <br/>Vous avez trouvé : <span id="scoreFinal"></span> chansons sur <span id="nbTotalMusiques"></span> !<br/><button id="restart">Revenir à l'accueil</button></p>
+      <div class="wrapperCenter">
+        <p>Merci d'avoir joué ! <br/>Vous avez trouvé : <span id="scoreFinal"></span> chansons sur <span id="nbTotalMusiques"></span> !<br/><button id="restart">Revenir à l'accueil</button></p>
+      </div>
     </div>
 
 

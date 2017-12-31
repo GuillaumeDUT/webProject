@@ -18,6 +18,8 @@ var score = 0;
 var indexMusiqueRandom;
 var tick;
 
+
+
 //pour récup les datas + afficher le Jeu et le lancer
 inputSubmit.addEventListener('click',function(e){
   e.preventDefault();
@@ -52,7 +54,7 @@ restart.addEventListener('click',function(e){
 function fetchData(){
   fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='+ytPlaylistId+'&key='+ytApiKey+'',{mode: 'cors'})
     .then(function(response){
-
+    
     return response.json();
   })
     .then(function(json){
@@ -157,6 +159,7 @@ function tickPlayer(){
   if(player.getPlayerState() ==  3){
     //parfois youtube mets la vidéo en player.getPlayerState -1  ou en 3 du coup faut relancer
     console.log('bug de youcacatube qui met en buffering la vidéo :( ');
+    player.seekTo(40);
   }
   console.log('tick');
 }

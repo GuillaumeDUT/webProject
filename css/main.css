@@ -1,10 +1,53 @@
-*{padding:0;margin:0; text-align: center;}
+/*    GLOBALES     */ 
+*{padding:0;margin:0;font-family:sans-serif;font-size:1rem;}
 
-
-#wrapperJeu {
-	display:none;
+body{
+  background:radial-gradient(circle at 50% 50%, #1d1f20 50%, #000000 100%);
+  color:white;
+}
+body, #wrapperJeu, #finJeu{
+  background:radial-gradient(circle at center, #1d1f20, #000000);
+  width:100%;
+  height:100vh;
 }
 
-#finJeu {
-	display:none;
+button{
+  width:200px;
+  height:50px;
+  border:none;
+  transition:1s all;
+  cursor:pointer;
+  padding:5px;
+}
+button:hover{
+  background-color:#bababa;
+
+}
+
+
+/*   SPECIFIQUES   */
+#inputSubmit {
+  margin-left:50%;
+  transform: translate3d(-50%,0,0);
+
+}
+
+#wrapperJeu, #finJeu {
+  display:none;
+  position:absolute;
+  top:0;
+  left:0;
+  text-align: center;
+
+}
+.wrapperCenter, .wrapperHomeContent {
+  top:50%;
+  margin:auto;
+  position:relative;
+  transform: translate3d(0,-50%,0);
+}
+
+.wrapperHomeContent {
+  height:100%;
+  width:100%;
 }
