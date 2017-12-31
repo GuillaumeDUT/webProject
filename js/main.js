@@ -6,6 +6,7 @@ var skipButton = document.getElementById('skipButton');
 var nbTotalMusiques = document.getElementById('nbTotalMusiques');
 var scoreFinal = document.getElementById('scoreFinal');
 var restart = document.getElementById('restart');
+var titreMusique = document.getElementById('titreMusique');
 
 var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
 var ytPlaylistId ="PLu1XMvYo5guTX7EkuUVX5lf_hedXF4_u-";
@@ -14,6 +15,7 @@ var dataFromAPI = [];
 var nbMusiques;
 var score = 0;
 var indexMusiqueRandom;
+var tick;
 
 //pour récup les datas + afficher le Jeu et le lancer
 inputSubmit.addEventListener('click',function(e){
@@ -25,7 +27,7 @@ inputSubmit.addEventListener('click',function(e){
 //ecoute ce qu'on tape
 inputReponse.addEventListener('keyup',function(e){
   e.preventDefault();
-  //console.log(this.value)
+  console.log(this.value)
 
 });
 
@@ -100,22 +102,24 @@ function jeu(){
 }
 
 function jouerMusique(){
-
+  titreMusique.innerHTML = ' ';
   randomMusic = Math.floor(Math.random()* (dataFromAPI.length - 0)) + 0;
 
   if(dataFromAPI[randomMusic] == undefined){
     finDuJeu()
     return 0;
   }
-  
+
   player.cueVideoById({
     videoId:dataFromAPI[randomMusic][0],
     startSeconds:40,
-    endSeconds:50,
+    endSeconds:60,
     suggestedQuality:'small',
   });
-  
+
   player.playVideo();
+  tick = setInterval(tickPlayer,1000);
+  tickPlayer();
 }
 
 
@@ -131,11 +135,28 @@ function finDuJeu(){
   nbTotalMusiques.innerHTML = nbMusiques;
   finJeu.style.display = "block";
   score = 0;
-  
 }
 
 
+function tickPlayer(){
+  if(player.getCurrentTime() > 45){
 
+    console.log('wesh')
+    clearInterval(tick);
+    musiqueNonTrouvee();
+    return 0;
+  }
+  if(player.getPlayerState() ==  3){
+    console.log('bug de youcacatube qui met en buffering la vidéo :( ');
+  }
+  console.log('tick');
+}
+
+
+function musiqueNonTrouvee(){
+  titreMusique.innerHTML = dataFromAPI[randomMusic][1];
+  setTimeout(nextMusique,3000);
+}
 
 
 
