@@ -25,6 +25,77 @@ button:hover{
 }
 
 
+/* CATEGORIES HOMEPAGE */ 
+
+.wrapper {
+display: grid;
+ grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, 320px);
+    width: 841px;
+      margin: 0 auto;
+    margin-top: 20px;
+}
+
+.one {
+  grid-column: 1;
+  grid-row: 1;
+}
+.two {
+  grid-column: 2;
+  grid-row: 1;
+}
+.three {
+  grid-column: 3;
+  grid-row: 1;
+}
+ 
+img {
+width: 300px;
+}
+
+.content {
+position: absolute;
+top: 45%;
+left: 50%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+color: darkslategrey;
+text-transform: uppercase;
+font-size: 40px;
+    text-align: center;
+}
+ 
+.overlay {
+position: relative;
+top: -304px;
+bottom: 0;
+left: 0;
+right: 0;
+height: 300px;
+width: 300px;
+opacity: 0;
+transition: .5s ease;
+background-color: white;
+
+}
+ 
+.one:hover #overlay1 {
+opacity: 0.6;
+    cursor: pointer;
+}
+
+.two:hover #overlay2 {
+opacity: 0.6;
+    cursor: pointer;
+}
+
+.three:hover #overlay3 {
+opacity: 0.6;
+    cursor: pointer;
+}
+
+
 /*   SPECIFIQUES   */
 #inputSubmit {
   margin-left:50%;

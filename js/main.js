@@ -1,4 +1,6 @@
-var inputSubmit = document.getElementById("inputSubmit");
+var Categorie1 = document.getElementById("one");
+var Categorie2 = document.getElementById("two");
+var Categorie3 = document.getElementById("three");
 var wrapperJeu = document.getElementById('wrapperJeu');
 var inputReponse = document.getElementById('inputReponse');
 var finJeu = document.getElementById('finJeu');
@@ -8,10 +10,8 @@ var scoreFinal = document.getElementById('scoreFinal');
 var scoreEnJeu = document.getElementById('scoreEnJeu');
 var restart = document.getElementById('restart');
 var titreMusique = document.getElementById('titreMusique');
-
 var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
-var ytPlaylistId ="PLu1XMvYo5guTX7EkuUVX5lf_hedXF4_u-";
-
+var ytPlaylistId ="";
 var dataFromAPI = [];
 var nbMusiques;
 var score = 0;
@@ -19,9 +19,25 @@ var indexMusiqueRandom;
 var tick;
 
 
+// EVENTS LISTENERS 
+//pour récup les datas + afficher le Jeu et le lancer selon les ca
+Categorie1.addEventListener('click',function(e){
+ ytPlaylistId = "PL5cn0JmhPoTETkCGhn2_Sd8sRhe4WWWqV";
+  e.preventDefault();
+  fetchData();
 
-//pour récup les datas + afficher le Jeu et le lancer
-inputSubmit.addEventListener('click',function(e){
+});
+
+Categorie2.addEventListener('click',function(e){
+ ytPlaylistId = "PL5cn0JmhPoTGxEeY0j2798ujchKAt9cBO";
+  e.preventDefault();
+  fetchData();
+
+});
+
+
+Categorie3.addEventListener('click',function(e){
+ ytPlaylistId = "PL5cn0JmhPoTF3gfaxnS1kZ6_hV1yVgMdn";
   e.preventDefault();
   fetchData();
 
@@ -48,6 +64,8 @@ restart.addEventListener('click',function(e){
   e.preventDefault();
   finJeu.style.display  = "none";
 })
+
+
 
 
 //récup les données
@@ -102,7 +120,6 @@ function stopVideo() {
   player.stopVideo();
 }
 
-
 function jeu(){
   nbMusiques = dataFromAPI.length;
   jouerMusique();
@@ -112,7 +129,7 @@ function jeu(){
 function jouerMusique(){
   titreMusique.innerHTML = ' ';
   randomMusic = Math.floor(Math.random()* (dataFromAPI.length - 0)) + 0;
-
+  unMute();
   if(dataFromAPI[randomMusic] == undefined){
     stopTick();
     finDuJeu()
@@ -166,7 +183,6 @@ function tickPlayer(){
   console.log('tick');
 }
 
-
 function musiqueNonTrouvee(){
   titreMusique.innerHTML = dataFromAPI[randomMusic][1];
   setTimeout(nextMusique,5000);
@@ -186,6 +202,9 @@ function stopTick(){
   clearInterval(tick);
 }
 
+function unMute() {
+  player.unMute();
+}
 
 
 //############## DISTANCE DE LEVHENMACHIN LA
