@@ -149,12 +149,13 @@ function tickPlayer(){
    player.playVideo();
   if(player.getCurrentTime() > 60){
 
-    console.log('wesh')
+    console.log('times out')
     clearInterval(tick);
     musiqueNonTrouvee();
     return 0;
   }
   if(player.getPlayerState() ==  3){
+    //parfois youtube mets la vidéo en player.getPlayerState -1  ou en 3 du coup faut relancer
     console.log('bug de youcacatube qui met en buffering la vidéo :( ');
   }
   console.log('tick');
