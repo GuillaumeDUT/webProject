@@ -278,5 +278,7 @@ getBackHomeButton.addEventListener('click',function(e){
 //console.log(count)
 
 
-
+function stopTick(){
+  clearInterval(tick);
+}
 

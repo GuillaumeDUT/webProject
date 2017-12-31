@@ -114,8 +114,10 @@ function jouerMusique(){
   randomMusic = Math.floor(Math.random()* (dataFromAPI.length - 0)) + 0;
 
   if(dataFromAPI[randomMusic] == undefined){
+    stopTick();
     finDuJeu()
     return 0;
+    console.log('fin du jeu qui reste après le return donc pas normal quoi')
   }
 
   player.cueVideoById({
@@ -138,6 +140,7 @@ function nextMusique(){
 
 function finDuJeu(){
   stopVideo();
+  window.clearInterval(tick);
   wrapperJeu.style.display  = "none";
   scoreFinal.innerHTML = score;
   nbTotalMusiques.innerHTML = nbMusiques;
@@ -150,7 +153,6 @@ function finDuJeu(){
 function tickPlayer(){
    player.playVideo();
   if(player.getCurrentTime() > 60){
-
     console.log('times out')
     clearInterval(tick);
     musiqueNonTrouvee();
@@ -171,7 +173,8 @@ function musiqueNonTrouvee(){
 }
 
 function reponseTrouvee(){
-  clearInterval(tick);
+
+  player.pauseVideo();
   titreMusique.innerHTML = dataFromAPI[randomMusic][1];
   score++;
   scoreEnJeu.innerHTML = score;
@@ -179,7 +182,9 @@ function reponseTrouvee(){
   setTimeout(nextMusique,3000);
 }
 
-
+function stopTick(){
+  clearInterval(tick);
+}
 
 
 
@@ -226,6 +231,7 @@ function editDistance(s1, s2) {
   }
   return costs[s2.length];
 }
+
 
 
 
