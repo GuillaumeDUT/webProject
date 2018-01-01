@@ -1,11 +1,8 @@
 var Lancement = document.getElementById("Lancement");
 var logo=document.getElementById("logo");
 var wrapperHomeContent=document.getElementById('wrapperHomeContent');
-var Categorie1 = document.getElementById("one");
-var Categorie2 = document.getElementById("two");
-var Categorie3 = document.getElementById("three");
-var Categorie4 = document.getElementById("four");
-var wrapperJeu = document.getElementById('wrapperJeu');var inputReponse = document.getElementById('inputReponse');
+var wrapperJeu = document.getElementById('wrapperJeu');
+var inputReponse = document.getElementById('inputReponse');
 var finJeu = document.getElementById('finJeu');
 var skipButton = document.getElementById('skipButton');
 var nbTotalMusiques = document.getElementById('nbTotalMusiques');
@@ -20,44 +17,32 @@ var nbMusiques;
 var score = 0;
 var indexMusiqueRandom;
 var tick;
+var arrayPlaylistId={
+  "soiree":"PL5cn0JmhPoTETkCGhn2_Sd8sRhe4WWWqV",
+  "annee70":"PL5cn0JmhPoTGxEeY0j2798ujchKAt9cBO",
+  "jeudimac":"PL5cn0JmhPoTF3gfaxnS1kZ6_hV1yVgMdn",
+  "frenchtouch":"PL5cn0JmhPoTEho_XJrfhk1feAyAhiHA81"
+};
 
 // PASSER À LA HOMEPAGE
 logo.addEventListener('click',function(e){
-    console.log("Trolol");
-    Lancement.classList.add('undisplay')
-    wrapperHomeContent.classList.add('displayimportant')
+  console.log("Trolol");
+  Lancement.style.display = "none";
+  wrapperHomeContent.style.display = "block";
 })
 
 
 // EVENTS LISTENERS 
 //pour récup les datas + afficher le Jeu et le lancer selon les ca
-Categorie1.addEventListener('click',function(e){
-  ytPlaylistId = "PL5cn0JmhPoTETkCGhn2_Sd8sRhe4WWWqV";
-  e.preventDefault();
-  fetchData();
 
+wrapperHomeContent.addEventListener('click',function(e){
+  //console.log(e.target.getAttribute('value'));
+  if(e.target.getAttribute('value')){
+    ytPlaylistId=arrayPlaylistId[e.target.getAttribute('value')];
+    fetchData();
+  }
 });
 
-Categorie2.addEventListener('click',function(e){
- ytPlaylistId = "PL5cn0JmhPoTGxEeY0j2798ujchKAt9cBO";
-  e.preventDefault();
-  fetchData();
-
-});
-
-Categorie3.addEventListener('click',function(e){
- ytPlaylistId = "PL5cn0JmhPoTF3gfaxnS1kZ6_hV1yVgMdn";
-  e.preventDefault();
-  fetchData();
-
-});
-
-Categorie4.addEventListener('click',function(e){
-  ytPlaylistId = "PL5cn0JmhPoTEho_XJrfhk1feAyAhiHA81";
-  e.preventDefault();
-  fetchData();
-
-});
 
 //ecoute ce qu'on tape
 inputReponse.addEventListener('keyup',function(e){
@@ -122,16 +107,14 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
   event.target.playVideo();
 }
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
+
 var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING && !done) {
     setTimeout(stopVideo, 20000);
     done = true;
   }
-   
+
 }
 function stopVideo() {
   player.stopVideo();
@@ -140,7 +123,7 @@ function stopVideo() {
 function jeu(){
   nbMusiques = dataFromAPI.length;   
   jouerMusique();
-    
+
 
 }
 
@@ -152,9 +135,8 @@ function jouerMusique(){
     stopTick();
     finDuJeu()
     return 0;
-    console.log('fin du jeu qui reste après le return donc pas normal quoi')
   }
-  
+
   player.cueVideoById({
     videoId:dataFromAPI[randomMusic][0],
     startSeconds:40,
@@ -197,7 +179,7 @@ function tickPlayer(){
     console.log('bug de youcacatube qui met en buffering la vidéo :( ');
     player.seekTo(40);
   }
-  setVolume(),
+  setVolume();
   console.log('tick');
 }
 
@@ -225,8 +207,8 @@ function unMute() {
 }
 
 function setVolume(){  
-    var valeurvolume = document.getElementById('inputvolume').value; 
-    player.setVolume(Number(valeurvolume));
+  var valeurvolume = document.getElementById('inputvolume').value; 
+  player.setVolume(Number(valeurvolume));
 }
 
 
