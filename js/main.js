@@ -54,7 +54,7 @@ restart.addEventListener('click',function(e){
 function fetchData(){
   fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='+ytPlaylistId+'&key='+ytApiKey+'',{mode: 'cors'})
     .then(function(response){
-    
+
     return response.json();
   })
     .then(function(json){
@@ -151,7 +151,7 @@ function finDuJeu(){
 
 //faut clear la variable tick quand on veut pas que cette fonction recommence
 function tickPlayer(){
-   player.playVideo();
+  player.playVideo();
   if(player.getCurrentTime() > 60){
     console.log('times out')
     clearInterval(tick);
@@ -231,7 +231,6 @@ function editDistance(s1, s2) {
   }
   return costs[s2.length];
 }
-
 
 
 
