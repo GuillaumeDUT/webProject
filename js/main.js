@@ -1,6 +1,11 @@
-var inputSubmit = document.getElementById("inputSubmit");
-var wrapperJeu = document.getElementById('wrapperJeu');
-var inputReponse = document.getElementById('inputReponse');
+var Lancement = document.getElementById("Lancement");
+var logo=document.getElementById("logo");
+var wrapperHomeContent=document.getElementById('wrapperHomeContent');
+var Categorie1 = document.getElementById("one");
+var Categorie2 = document.getElementById("two");
+var Categorie3 = document.getElementById("three");
+var Categorie4 = document.getElementById("four");
+var wrapperJeu = document.getElementById('wrapperJeu');var inputReponse = document.getElementById('inputReponse');
 var finJeu = document.getElementById('finJeu');
 var skipButton = document.getElementById('skipButton');
 var nbTotalMusiques = document.getElementById('nbTotalMusiques');
@@ -8,20 +13,47 @@ var scoreFinal = document.getElementById('scoreFinal');
 var scoreEnJeu = document.getElementById('scoreEnJeu');
 var restart = document.getElementById('restart');
 var titreMusique = document.getElementById('titreMusique');
-
 var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
-var ytPlaylistId ="PLu1XMvYo5guTX7EkuUVX5lf_hedXF4_u-";
-
+var ytPlaylistId ="";
 var dataFromAPI = [];
 var nbMusiques;
 var score = 0;
 var indexMusiqueRandom;
 var tick;
 
+// PASSER À LA HOMEPAGE
+logo.addEventListener('click',function(e){
+    console.log("Trolol");
+    Lancement.classList.add('undisplay')
+    wrapperHomeContent.classList.add('displayimportant')
+})
 
 
-//pour récup les datas + afficher le Jeu et le lancer
-inputSubmit.addEventListener('click',function(e){
+// EVENTS LISTENERS 
+//pour récup les datas + afficher le Jeu et le lancer selon les ca
+Categorie1.addEventListener('click',function(e){
+  ytPlaylistId = "PL5cn0JmhPoTETkCGhn2_Sd8sRhe4WWWqV";
+  e.preventDefault();
+  fetchData();
+
+});
+
+Categorie2.addEventListener('click',function(e){
+ ytPlaylistId = "PL5cn0JmhPoTGxEeY0j2798ujchKAt9cBO";
+  e.preventDefault();
+  fetchData();
+
+});
+
+Categorie3.addEventListener('click',function(e){
+ ytPlaylistId = "PL5cn0JmhPoTF3gfaxnS1kZ6_hV1yVgMdn";
+  e.preventDefault();
+  fetchData();
+
+});
+
+Categorie4.addEventListener('click',function(e){
+  ytPlaylistId = "PL5cn0JmhPoTEho_XJrfhk1feAyAhiHA81";
   e.preventDefault();
   fetchData();
 
@@ -48,6 +80,8 @@ restart.addEventListener('click',function(e){
   e.preventDefault();
   finJeu.style.display  = "none";
 })
+
+
 
 
 //récup les données
@@ -97,29 +131,30 @@ function onPlayerStateChange(event) {
     setTimeout(stopVideo, 20000);
     done = true;
   }
+   
 }
 function stopVideo() {
   player.stopVideo();
 }
 
-
 function jeu(){
-  nbMusiques = dataFromAPI.length;
+  nbMusiques = dataFromAPI.length;   
   jouerMusique();
+    
 
 }
 
 function jouerMusique(){
   titreMusique.innerHTML = ' ';
   randomMusic = Math.floor(Math.random()* (dataFromAPI.length - 0)) + 0;
-
+  unMute(); 
   if(dataFromAPI[randomMusic] == undefined){
     stopTick();
     finDuJeu()
     return 0;
     console.log('fin du jeu qui reste après le return donc pas normal quoi')
   }
-
+  
   player.cueVideoById({
     videoId:dataFromAPI[randomMusic][0],
     startSeconds:40,
@@ -131,7 +166,6 @@ function jouerMusique(){
   tick = setInterval(tickPlayer,1000);
   tickPlayer();
 }
-
 
 function nextMusique(){
   dataFromAPI.splice(randomMusic,1);
@@ -163,9 +197,9 @@ function tickPlayer(){
     console.log('bug de youcacatube qui met en buffering la vidéo :( ');
     player.seekTo(40);
   }
+  setVolume(),
   console.log('tick');
 }
-
 
 function musiqueNonTrouvee(){
   titreMusique.innerHTML = dataFromAPI[randomMusic][1];
@@ -186,6 +220,14 @@ function stopTick(){
   clearInterval(tick);
 }
 
+function unMute() {
+  player.unMute();
+}
+
+function setVolume(){  
+    var valeurvolume = document.getElementById('inputvolume').value; 
+    player.setVolume(Number(valeurvolume));
+}
 
 
 //############## DISTANCE DE LEVHENMACHIN LA
