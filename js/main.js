@@ -1,8 +1,11 @@
+var Lancement = document.getElementById("Lancement");
+var logo=document.getElementById("logo");
+var wrapperHomeContent=document.getElementById('wrapperHomeContent');
 var Categorie1 = document.getElementById("one");
 var Categorie2 = document.getElementById("two");
 var Categorie3 = document.getElementById("three");
-var wrapperJeu = document.getElementById('wrapperJeu');
-var inputReponse = document.getElementById('inputReponse');
+var Categorie4 = document.getElementById("four");
+var wrapperJeu = document.getElementById('wrapperJeu');var inputReponse = document.getElementById('inputReponse');
 var finJeu = document.getElementById('finJeu');
 var skipButton = document.getElementById('skipButton');
 var nbTotalMusiques = document.getElementById('nbTotalMusiques');
@@ -18,11 +21,18 @@ var score = 0;
 var indexMusiqueRandom;
 var tick;
 
+// PASSER À LA HOMEPAGE
+logo.addEventListener('click',function(e){
+    console.log("Trolol");
+    Lancement.classList.add('undisplay')
+    wrapperHomeContent.classList.add('displayimportant')
+})
+
 
 // EVENTS LISTENERS 
 //pour récup les datas + afficher le Jeu et le lancer selon les ca
 Categorie1.addEventListener('click',function(e){
- ytPlaylistId = "PL5cn0JmhPoTETkCGhn2_Sd8sRhe4WWWqV";
+  ytPlaylistId = "PL5cn0JmhPoTETkCGhn2_Sd8sRhe4WWWqV";
   e.preventDefault();
   fetchData();
 
@@ -35,9 +45,15 @@ Categorie2.addEventListener('click',function(e){
 
 });
 
-
 Categorie3.addEventListener('click',function(e){
  ytPlaylistId = "PL5cn0JmhPoTF3gfaxnS1kZ6_hV1yVgMdn";
+  e.preventDefault();
+  fetchData();
+
+});
+
+Categorie4.addEventListener('click',function(e){
+  ytPlaylistId = "PL5cn0JmhPoTEho_XJrfhk1feAyAhiHA81";
   e.preventDefault();
   fetchData();
 
@@ -115,28 +131,30 @@ function onPlayerStateChange(event) {
     setTimeout(stopVideo, 20000);
     done = true;
   }
+   
 }
 function stopVideo() {
   player.stopVideo();
 }
 
 function jeu(){
-  nbMusiques = dataFromAPI.length;
+  nbMusiques = dataFromAPI.length;   
   jouerMusique();
+    
 
 }
 
 function jouerMusique(){
   titreMusique.innerHTML = ' ';
   randomMusic = Math.floor(Math.random()* (dataFromAPI.length - 0)) + 0;
-  unMute();
+  unMute(); 
   if(dataFromAPI[randomMusic] == undefined){
     stopTick();
     finDuJeu()
     return 0;
     console.log('fin du jeu qui reste après le return donc pas normal quoi')
   }
-
+  
   player.cueVideoById({
     videoId:dataFromAPI[randomMusic][0],
     startSeconds:40,
@@ -148,7 +166,6 @@ function jouerMusique(){
   tick = setInterval(tickPlayer,1000);
   tickPlayer();
 }
-
 
 function nextMusique(){
   dataFromAPI.splice(randomMusic,1);
@@ -180,6 +197,7 @@ function tickPlayer(){
     console.log('bug de youcacatube qui met en buffering la vidéo :( ');
     player.seekTo(40);
   }
+  setVolume(),
   console.log('tick');
 }
 
@@ -204,6 +222,11 @@ function stopTick(){
 
 function unMute() {
   player.unMute();
+}
+
+function setVolume(){  
+    var valeurvolume = document.getElementById('inputvolume').value; 
+    player.setVolume(Number(valeurvolume));
 }
 
 
