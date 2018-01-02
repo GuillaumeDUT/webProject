@@ -27,6 +27,7 @@ var arrayPlaylistId={
 // PASSER À LA HOMEPAGE
 logo.addEventListener('click',function(e){
   console.log("Trolol");
+  clearInterval(tickNotes);
   Lancement.style.display = "none";
   wrapperHomeContent.style.display = "block";
 })

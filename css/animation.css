@@ -1,11 +1,5 @@
-.animationNote{
-
-  animation-name:bougetoncul;
-  animation-duration: 4s;
-  animation-iteration-count: once;
-}
-
-@keyframes bougetoncul{
+/*
+@keyframes animNote{
   0%{
     opacity:0;
     left:0;
@@ -24,4 +18,4 @@
     left:400px;
     transform:rotate(20deg);
   }
-}
+}*/
