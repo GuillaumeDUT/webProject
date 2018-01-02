@@ -1,5 +1,6 @@
 var Lancement = document.getElementById("Lancement");
 var logo=document.getElementById("logo");
+var homelogo=document.getElementById("homelogo");
 var wrapperHomeContent=document.getElementById('wrapperHomeContent');
 var wrapperJeu = document.getElementById('wrapperJeu');
 var inputReponse = document.getElementById('inputReponse');
@@ -21,7 +22,9 @@ var arrayPlaylistId={
   "soiree":"PL5cn0JmhPoTETkCGhn2_Sd8sRhe4WWWqV",
   "annee70":"PL5cn0JmhPoTGxEeY0j2798ujchKAt9cBO",
   "jeudimac":"PL5cn0JmhPoTF3gfaxnS1kZ6_hV1yVgMdn",
-  "frenchtouch":"PL5cn0JmhPoTEho_XJrfhk1feAyAhiHA81"
+  "frenchtouch":"PL5cn0JmhPoTEho_XJrfhk1feAyAhiHA81",
+  "monbonentendeur":"PL5cn0JmhPoTFcr1R3mQq6wuES4QW72owN",
+  "ghibli":"PL5cn0JmhPoTFMl7x_WnknWpx6hGFc7axX",    
 };
 
 // PASSER À LA HOMEPAGE
@@ -31,9 +34,15 @@ logo.addEventListener('click',function(e){
   wrapperHomeContent.style.display = "block";
 })
 
+// REVENIR À LA PAGE DE LANCEMENT
+
+homelogo.addEventListener('click',function(e){
+  Lancement.style.display = "block";
+  wrapperHomeContent.style.display = "none";
+})
 
 // EVENTS LISTENERS 
-//pour récup les datas + afficher le Jeu et le lancer selon les ca
+//pour récup les datas + afficher le Jeu et le lancer selon les cas
 
 wrapperHomeContent.addEventListener('click',function(e){
   //console.log(e.target.getAttribute('value'));
@@ -57,9 +66,14 @@ inputReponse.addEventListener('keyup',function(e){
 });
 
 skipButton.addEventListener('click',function(e){
+ 
+if(player.getPlayerState() ==  1){
   e.preventDefault();
   nextMusique();
+    }
 });
+
+
 
 restart.addEventListener('click',function(e){
   e.preventDefault();
