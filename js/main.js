@@ -190,8 +190,10 @@ function finDuJeu(){
 function tickPlayer(){
   player.playVideo();
   if(player.getCurrentTime() >= 40.01){
+      if(player.getPlayerState() ==  1){
     barreDeProgression.classList.remove("animationProgressionMusique");
     barreDeProgression.classList.add("animationProgressionMusique");
+      }
   }
   
   if(player.getCurrentTime() >= 60.01){
