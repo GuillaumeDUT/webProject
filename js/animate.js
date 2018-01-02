@@ -11,6 +11,7 @@ var randomCharacter;
 var tickNotes;
 var randomColor;
 var trigger = true;
+var tabBgAChanger = ['document.body','wrapperJeu','finJeu'];
 
 var arrayChar = ["♩","♪","♫","♬","♭","♮","♯","ø","🎤","🎹","🎸","🎻","📯","🎷","🎺","🎧","🎼","🎶"];
 
@@ -64,5 +65,9 @@ function animate(){
 function changeBackground(){
   randomColor = Math.floor(Math.random()*16777215).toString(16);
   console.log(randomColor);
+
+
   document.body.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
+  wrapperJeu.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
+  finJeu.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
 }
