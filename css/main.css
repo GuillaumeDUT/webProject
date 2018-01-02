@@ -36,6 +36,7 @@ button, #logo, .dataOverlay{
 }
 #Blindtest {
   font-size:5rem;
+  z-index:15;
 }
 
 
@@ -43,19 +44,7 @@ button, #logo, .dataOverlay{
   position:absolute;
   left:50%;
   top:50%;
-
 }
-.notesMusique1, .notesMusiqueé, .notesMusique3, .notesMusique4, .notesMusique5, .notesMusique6, .notesMusique7, .notesMusique8, .notesMusique9, .notesMusique1, {
-  
-}
-
-.notesMusique1{
-  transform:rotate(50deg);
-  animation-name:noteMusique1;
-  animation-duration:4s;
-  animation-iteration-count: infinite;
-}
-
 .note{
   opacity: 1;
   position: absolute;
@@ -175,7 +164,20 @@ img {
   filter: blur(3px);
 }
 
-
+#barreProgressionMusique{
+  height:3px;
+  position:absolute;
+  bottom:0;
+  left:0;
+  background-color:white;
+  width:0%;
+}
+.animationProgressionMusique{
+  animation-name:barreMusique;
+  animation-timing-function: linear;
+  animation-duration:20s;
+  animation-iteration-count: 1;
+}
 /*
 #player{
 visibility: hidden;
@@ -243,23 +245,8 @@ visibility: hidden;
 
 }
 
-@keyframes noteMusique1{
-  0%{
-    opacity:0;
-    left:0;
-  }
-  20%{
-    opacity:0;
-  }
-  25%{
-    opacity:1;
-  }
-  80%{
-    opacity:1;
-  }
+@keyframes barreMusique{
   100%{
-    opacity:0;
-    left:400px;
-    transform:rotate(20deg);
+    width:100%;
   }
 }

@@ -11,6 +11,8 @@ var scoreFinal = document.getElementById('scoreFinal');
 var scoreEnJeu = document.getElementById('scoreEnJeu');
 var restart = document.getElementById('restart');
 var titreMusique = document.getElementById('titreMusique');
+var barreDeProgression = document.getElementById('barreProgressionMusique');
+
 var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
 var ytPlaylistId ="";
 var dataFromAPI = [];
@@ -67,11 +69,14 @@ inputReponse.addEventListener('keyup',function(e){
 });
 
 skipButton.addEventListener('click',function(e){
- 
-if(player.getPlayerState() ==  1){
   e.preventDefault();
-  nextMusique();
-    }
+  barreDeProgression.classList.remove("animationProgressionMusique");
+
+  /*if(player.getPlayerState() ==  1){
+    nextMusique();
+  }*/
+  clearInterval(tick);
+  musiqueNonTrouvee();
 });
 
 
@@ -79,7 +84,7 @@ if(player.getPlayerState() ==  1){
 restart.addEventListener('click',function(e){
   e.preventDefault();
   finJeu.style.display  = "none";
-})
+});
 
 
 
@@ -156,7 +161,7 @@ function jouerMusique(){
   player.cueVideoById({
     videoId:dataFromAPI[randomMusic][0],
     startSeconds:40,
-    endSeconds:60,
+    endSeconds:61,
     suggestedQuality:'small',
   });
 
@@ -184,7 +189,13 @@ function finDuJeu(){
 //faut clear la variable tick quand on veut pas que cette fonction recommence
 function tickPlayer(){
   player.playVideo();
-  if(player.getCurrentTime() > 60){
+  if(player.getCurrentTime() >= 40.01){
+    barreDeProgression.classList.remove("animationProgressionMusique");
+    barreDeProgression.classList.add("animationProgressionMusique");
+  }
+  
+  if(player.getCurrentTime() >= 60.01){
+    barreDeProgression.classList.remove("animationProgressionMusique");
     console.log('times out')
     clearInterval(tick);
     musiqueNonTrouvee();

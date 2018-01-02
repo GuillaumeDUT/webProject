@@ -1,6 +1,7 @@
 var logo = document.getElementById('logo');
 //var container = document.getElementsByTagName('.containerNotes');
 var container = document.getElementById('containerNotes');
+
 var compteur = 0;
 
 var randomPlaceY;
@@ -8,18 +9,23 @@ var randomPlaceX;
 var randomRotate;
 var randomCharacter;
 var tickNotes;
+var randomColor;
 var trigger = true;
 
 var arrayChar = ["♩","♪","♫","♬","♭","♮","♯","ø","🎤","🎹","🎸","🎻","📯","🎷","🎺","🎧","🎼","🎶"];
 
 logo.addEventListener('mouseenter',function(e){
-  if(trigger){
+  /* if(trigger){
     tickNotes = setInterval(animate,100);
     trigger=false;
   }else{
     clearInterval(tickNotes);
     trigger = true;
+  }*/
+  for(var i =0;i<4;i++){
+    animate();
   }
+  changeBackground();
 });
 
 
@@ -30,13 +36,13 @@ function animate(){
   randomCharacter = Math.floor(Math.random()*arrayChar.length);
   var animation = document.createElement('style');
   animation.setAttribute('id','style'+compteur+'');
-  animation.innerHTML ='@keyframes animNote'+compteur+'{0%{opacity:0;left:0;top:0;}20%{opacity:0}25%{opacity:1}80%{opacity:1}100%{opacity:0;left:'+randomPlaceY+'px;top:'+randomPlaceX+'px;transform:rotate('+randomRotate+'deg)}}';
+  animation.innerHTML ='@keyframes animNote'+compteur+'{0%{opacity:0;left:0;top:0;}20%{opacity:0}25%{opacity:1}80%{opacity:1}100%{opacity:0;left:'+randomPlaceY+'px;top:'+(randomPlaceX-100)+'px;transform:rotate('+randomRotate+'deg)}}';
   container.appendChild(animation);
 
   var child = document.createElement('div');
   child.setAttribute('class','note ');
   child.setAttribute('id','animationNote'+compteur+'')
-  child.setAttribute('style','animation-name:animNote'+compteur+';animation-duration:4s;animation-iteration-count:infinite;');
+  child.setAttribute('style','animation-name:animNote'+compteur+';animation-duration:4s;animation-iteration-count:infinite;z-index:-2;');
   child.innerHTML=arrayChar[randomCharacter];
   //console.log(child);
   container.appendChild(child);
@@ -53,4 +59,10 @@ function animate(){
   },4000);
 
   compteur++
+}
+
+function changeBackground(){
+  randomColor = Math.floor(Math.random()*16777215).toString(16);
+  console.log(randomColor);
+  document.body.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
 }
