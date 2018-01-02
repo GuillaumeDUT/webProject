@@ -81,7 +81,7 @@ button, #logo, .dataOverlay{
   position:relative;
   transform: translate3d(0,-50%,0);
 }
-#logo{
+#logo, #homelogo{
   animation-name: logo;
   animation-duration:4s;
   animation-iteration-count: infinite;
@@ -89,6 +89,11 @@ button, #logo, .dataOverlay{
   z-index:3;
 }
 #logo:hover{
+  filter:blur(  5px);
+  opacity:0.5;
+}
+
+#homelogo:hover{
   filter:blur(  5px);
   opacity:0.5;
 }
@@ -113,9 +118,25 @@ img {
   display:none;
 }
 
+.home{
+    margin-left: -600px;
+    position: fixed;
+    width: 40px;
+    opacity: 0.7;
+}
+
 /* CATEGORIES HOVER & TITRES  */
-.itemPlaylist, .bgChoixPlaylist, .overlay, button, #logo{
+.itemPlaylist, .bgChoixPlaylist, .overlay, button, #logo, #homelogo{
   transition:all .5s ease;
+}
+
+
+.star, .star2{
+    width: 20px;
+}
+
+.star{
+    margin-top: 20px;
 }
 
 .itemPlaylist {
