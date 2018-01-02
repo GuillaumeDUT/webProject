@@ -71,12 +71,13 @@ restart.addEventListener('click',function(e){
 
 //récup les données
 function fetchData(){
-  fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='+ytPlaylistId+'&key='+ytApiKey+'',{mode: 'cors'})
+  fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId='+ytPlaylistId+'&key='+ytApiKey+'',{mode: 'cors'})
     .then(function(response){
 
     return response.json();
   })
     .then(function(json){
+    console.log(json)
     wrapperJeu.style.display ="block";
     //on effectue une copie des données pour pouvoir y accèder autre part que dans la réponse (vu  que c'est asyncrone)
     for(i in json.items){
