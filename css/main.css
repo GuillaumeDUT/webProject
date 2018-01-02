@@ -129,6 +129,15 @@ img {
   transition:all .5s ease;
 }
 
+
+.star, .star2{
+    width: 20px;
+}
+
+.star{
+    margin-top: 20px;
+}
+
 .itemPlaylist {
   overflow:hidden;
   height:300px;
