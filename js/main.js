@@ -3,9 +3,10 @@ var logo=document.getElementById("logo");
 var homelogo=document.getElementById("homelogo");
 var wrapperHomeContent=document.getElementById('wrapperHomeContent');
 var wrapperJeu = document.getElementById('wrapperJeu');
-var inputReponse = document.getElementById('inputReponse');
+var inputReponse = document.getElementById('inputReponse').focus();
 var finJeu = document.getElementById('finJeu');
 var skipButton = document.getElementById('skipButton');
+var stopButton = document.getElementById('stopButton');
 var nbTotalMusiques = document.getElementById('nbTotalMusiques');
 var scoreFinal = document.getElementById('scoreFinal');
 var scoreEnJeu = document.getElementById('scoreEnJeu');
@@ -64,7 +65,11 @@ inputReponse.addEventListener('keyup',function(e){
     if ( verifiereponse(dataFromAPI[randomMusic][1],inputReponse.value) >= 0.5) {
       reponseTrouvee();
     }
+          inputReponse.value=""; //Input vidé si mauvaise réponse, ça évite de tt reselectionner ou effacer
   }
+    
+
+    
 
 });
 
@@ -77,6 +82,12 @@ skipButton.addEventListener('click',function(e){
   }*/
   clearInterval(tick);
   musiqueNonTrouvee();
+});
+
+stopButton.addEventListener('click',function(e){
+  e.preventDefault();
+  barreDeProgression.classList.remove("animationProgressionMusique");
+    finDuJeu();
 });
 
 
