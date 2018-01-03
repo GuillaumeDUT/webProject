@@ -3,7 +3,7 @@ var logo=document.getElementById("logo");
 var homelogo=document.getElementById("homelogo");
 var wrapperHomeContent=document.getElementById('wrapperHomeContent');
 var wrapperJeu = document.getElementById('wrapperJeu');
-var inputReponse = document.getElementById('inputReponse').focus();
+var inputReponse = document.getElementById('inputReponse');
 var finJeu = document.getElementById('finJeu');
 var skipButton = document.getElementById('skipButton');
 var stopButton = document.getElementById('stopButton');
@@ -32,11 +32,10 @@ var arrayPlaylistId={
 
 // PASSER À LA HOMEPAGE
 logo.addEventListener('click',function(e){
-  console.log("Trolol");
   clearInterval(tickNotes);
   Lancement.style.display = "none";
   wrapperHomeContent.style.display = "block";
-})
+});
 
 // REVENIR À LA PAGE DE LANCEMENT
 
@@ -65,32 +64,28 @@ inputReponse.addEventListener('keyup',function(e){
     if ( verifiereponse(dataFromAPI[randomMusic][1],inputReponse.value) >= 0.5) {
       reponseTrouvee();
     }
-          inputReponse.value=""; //Input vidé si mauvaise réponse, ça évite de tt reselectionner ou effacer
+    inputReponse.value=""; //Input vidé si mauvaise réponse, ça évite de tt reselectionner ou effacer
   }
-    
 
-    
+
+
 
 });
 
 skipButton.addEventListener('click',function(e){
   e.preventDefault();
   barreDeProgression.classList.remove("animationProgressionMusique");
-
-  /*if(player.getPlayerState() ==  1){
-    nextMusique();
-  }*/
   clearInterval(tick);
+  skipButton.disabled = 'true';
   musiqueNonTrouvee();
 });
 
 stopButton.addEventListener('click',function(e){
   e.preventDefault();
   barreDeProgression.classList.remove("animationProgressionMusique");
-    finDuJeu();
+  clearInterval(tick);
+  finDuJeu();
 });
-
-
 
 restart.addEventListener('click',function(e){
   e.preventDefault();
@@ -104,11 +99,9 @@ restart.addEventListener('click',function(e){
 function fetchData(){
   fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId='+ytPlaylistId+'&key='+ytApiKey+'',{mode: 'cors'})
     .then(function(response){
-
     return response.json();
   })
     .then(function(json){
-    console.log(json)
     wrapperJeu.style.display ="block";
     //on effectue une copie des données pour pouvoir y accèder autre part que dans la réponse (vu  que c'est asyncrone)
     for(i in json.items){
@@ -155,12 +148,11 @@ function stopVideo() {
 function jeu(){
   nbMusiques = dataFromAPI.length;   
   jouerMusique();
-
-
 }
 
 function jouerMusique(){
-  titreMusique.innerHTML = ' ';
+  titreMusique.innerHTML = '';
+  skipButton.removeAttribute('disabled');
   randomMusic = Math.floor(Math.random()* (dataFromAPI.length - 0)) + 0;
   unMute(); 
   if(dataFromAPI[randomMusic] == undefined){
@@ -201,12 +193,13 @@ function finDuJeu(){
 function tickPlayer(){
   player.playVideo();
   if(player.getCurrentTime() >= 40.01){
-      if(player.getPlayerState() ==  1){
-    barreDeProgression.classList.remove("animationProgressionMusique");
-    barreDeProgression.classList.add("animationProgressionMusique");
-      }
+    if(player.getPlayerState() ==  1){
+      console.log('tick progression')
+      barreDeProgression.classList.remove("animationProgressionMusique");
+      barreDeProgression.classList.add("animationProgressionMusique");
+    }
   }
-  
+
   if(player.getCurrentTime() >= 60.01){
     barreDeProgression.classList.remove("animationProgressionMusique");
     console.log('times out')
@@ -229,8 +222,8 @@ function musiqueNonTrouvee(){
 }
 
 function reponseTrouvee(){
-
   player.pauseVideo();
+  barreDeProgression.classList.remove("animationProgressionMusique");
   titreMusique.innerHTML = dataFromAPI[randomMusic][1];
   score++;
   scoreEnJeu.innerHTML = score;
