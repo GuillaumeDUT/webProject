@@ -180,7 +180,7 @@ function nextMusique(){
 
 function finDuJeu(){
   stopVideo();
-  window.clearInterval(tick);
+  clearInterval(tick);
   wrapperJeu.style.display  = "none";
   scoreFinal.innerHTML = score;
   nbTotalMusiques.innerHTML = nbMusiques;
