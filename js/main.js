@@ -150,6 +150,7 @@ function stopVideo() {
 }
 
 function jeu(){
+       
   nbMusiques = dataFromAPI.length;   
   jouerMusique();
 }
@@ -191,6 +192,7 @@ function finDuJeu(){
   nbTotalMusiques.innerHTML = nbMusiques;
   finJeu.style.display = "block";
   score = 0;
+  player.mute()
 }
 
 
