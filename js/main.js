@@ -107,6 +107,10 @@ function fetchData(){
     for(i in json.items){
       dataFromAPI.push([ json.items[i]['snippet']['resourceId']['videoId'] , json.items[i]['snippet']['title'] ]);
     }
+     /* var playerDiv = document.createElement('div');
+      playerDiv.setAttribute("id","player");
+      var divParent = barreDeProgression.parentNode;
+      divParent.insertBefore(barreDeProgression,playerDiv);*/
     jeu();
   });
 
@@ -181,6 +185,7 @@ function nextMusique(){
 function finDuJeu(){
   stopVideo();
   clearInterval(tick);
+  dataFromAPI = [];
   wrapperJeu.style.display  = "none";
   scoreFinal.innerHTML = score;
   nbTotalMusiques.innerHTML = nbMusiques;
