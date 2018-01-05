@@ -356,6 +356,11 @@ input[type=range]:focus::-ms-fill-upper {
     
 }
 
+.shake{
+    animation-name: shake;
+    animation-duration: 0.2s;
+}
+
 /* KEYFRAMES */
 
 
@@ -395,5 +400,20 @@ input[type=range]:focus::-ms-fill-upper {
 @keyframes barreMusique{
   100%{
     width:100%;
+  }
+}
+
+
+@keyframes shake {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    transform: translate3d(10px, 0, 0);
   }
 }

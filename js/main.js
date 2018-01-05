@@ -66,13 +66,17 @@ wrapperHomeContent.addEventListener('click',function(e){
 //ecoute ce qu'on tape
 inputReponse.addEventListener('keyup',function(e){
   e.preventDefault();
+   wrapperJeu.classList.remove("shake");    
   //console.log(this.value)
   if (e.keyCode == 13) {
     if ( verifiereponse(dataFromAPI[randomMusic][1],inputReponse.value) >= 0.5) {
       reponseTrouvee();
     }
+    wrapperJeu.classList.add("shake");  
     inputReponse.value=""; //Input vidé si mauvaise réponse, ça évite de tt reselectionner ou effacer
   }
+    
+   
 
 
 
