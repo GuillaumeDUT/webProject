@@ -173,7 +173,7 @@ function jouerMusique(){
   player.cueVideoById({
     videoId:dataFromAPI[randomMusic][0],
     startSeconds:40,
-    endSeconds:61,
+    endSeconds:60,
     suggestedQuality:'small',
   });
 
@@ -212,7 +212,7 @@ function tickPlayer(){
     }
   }
 
-  if(player.getCurrentTime() >= 60.01){
+  if(player.getCurrentTime() >= 58){
     barreDeProgression.classList.remove("animationProgressionMusique");
     console.log('times out')
     clearInterval(tick);
