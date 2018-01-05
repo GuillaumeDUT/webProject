@@ -13,6 +13,8 @@ var scoreEnJeu = document.getElementById('scoreEnJeu');
 var restart = document.getElementById('restart');
 var titreMusique = document.getElementById('titreMusique');
 var barreDeProgression = document.getElementById('barreProgressionMusique');
+var popUp = document.getElementById('enleverModal');
+var modal = document.getElementById('modalPopUp');
 
 var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
 var ytPlaylistId ="";
@@ -31,6 +33,11 @@ var arrayPlaylistId={
 };
 
 // PASSER À LA HOMEPAGE
+popUp.addEventListener('click',function(e){
+  e.preventDefault();
+  modal.style.display = "none";
+});
+
 logo.addEventListener('click',function(e){
   clearInterval(tickNotes);
   Lancement.style.display = "none";

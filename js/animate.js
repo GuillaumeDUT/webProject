@@ -55,7 +55,7 @@ function animate(){
   setTimeout(function(){
     elem.parentNode.removeChild(elem);
     style.parentNode.removeChild(style);
-    console.log("success")
+    //console.log("success")
 
   },4000);
 
