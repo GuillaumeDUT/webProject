@@ -66,22 +66,21 @@ wrapperHomeContent.addEventListener('click',function(e){
 //ecoute ce qu'on tape
 inputReponse.addEventListener('keyup',function(e){
   e.preventDefault();
-   wrapperJeu.classList.remove("shake");    
+  wrapperJeu.classList.remove("shake");    
   //console.log(this.value)
   if (e.keyCode == 13) {
-    if ( verifiereponse(dataFromAPI[randomMusic][1],inputReponse.value) >= 0.5) {
+    if ( verifiereponse(dataFromAPI[randomMusic][1],inputReponse.value) >= 0.5) 
+    {
       reponseTrouvee();
     }
+      
     wrapperJeu.classList.add("shake");  
     inputReponse.value=""; //Input vidé si mauvaise réponse, ça évite de tt reselectionner ou effacer
   }
     
-   
-
-
-
 
 });
+
 
 skipButton.addEventListener('click',function(e){
   e.preventDefault();
@@ -102,7 +101,6 @@ restart.addEventListener('click',function(e){
   e.preventDefault();
   finJeu.style.display  = "none";
 });
-
 
 
 
@@ -180,11 +178,14 @@ function jouerMusique(){
   });
 
   player.playVideo();
+  barreDeProgression.classList.add("animationProgressionMusique");    
+      
   tick = setInterval(tickPlayer,1000);
   tickPlayer();
 }
 
 function nextMusique(){
+ barreDeProgression.classList.add("animationProgressionMusique");
   dataFromAPI.splice(randomMusic,1);
   jouerMusique();
 }
@@ -208,8 +209,6 @@ function tickPlayer(){
   if(player.getCurrentTime() >= 40.01){
     if(player.getPlayerState() ==  1){
       console.log('tick progression')
-      barreDeProgression.classList.remove("animationProgressionMusique");
-      barreDeProgression.classList.add("animationProgressionMusique");
     }
   }
 
@@ -242,6 +241,7 @@ function reponseTrouvee(){
   scoreEnJeu.innerHTML = score;
   inputReponse.value = "";
   setTimeout(nextMusique,3000);
+    
 }
 
 function stopTick(){
