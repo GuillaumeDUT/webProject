@@ -107,10 +107,6 @@ function fetchData(){
     for(i in json.items){
       dataFromAPI.push([ json.items[i]['snippet']['resourceId']['videoId'] , json.items[i]['snippet']['title'] ]);
     }
-     /* var playerDiv = document.createElement('div');
-      playerDiv.setAttribute("id","player");
-      var divParent = barreDeProgression.parentNode;
-      divParent.insertBefore(barreDeProgression,playerDiv);*/
     jeu();
   });
 
@@ -150,7 +146,6 @@ function stopVideo() {
 }
 
 function jeu(){
-       
   nbMusiques = dataFromAPI.length;   
   jouerMusique();
 }
