@@ -43,11 +43,6 @@ button, #logo, .dataOverlay,#enleverModal {
   z-index:15;
 }
 
-.Lancement{
-  font-family: 'Quicksand', sans-serif;
-}
-
-
 
 .containerNotes{
   position:absolute;
@@ -314,13 +309,7 @@ input[type=range]::-ms-track {
   border-color: transparent;
   color: transparent;
 }
-input[type=range]::-ms-fill-lower {
-  background: #50555C;
-  border: 0px solid #000000;
-  border-radius: 28px;
-  box-shadow: 1px 1px 1px #50555C;
-}
-input[type=range]::-ms-fill-upper {
+input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper  {
   background: #50555C;
   border: 0px solid #000000;
   border-radius: 28px;
@@ -336,12 +325,10 @@ input[type=range]::-ms-thumb {
   background: #529DE1;
   cursor: pointer;
 }
-input[type=range]:focus::-ms-fill-lower {
+input[type=range]:focus::-ms-fill-lower, input[type=range]:focus::-ms-fill-upper {
   background: #50555C;
 }
-input[type=range]:focus::-ms-fill-upper {
-  background: #50555C;
-}
+
 
 
 #inputvolume:hover {
