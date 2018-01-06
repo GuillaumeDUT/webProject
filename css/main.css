@@ -17,6 +17,13 @@ body, #wrapperJeu, #finJeu{
   background-repeat:no-repeat !important;
 }
 
+<<<<<<< HEAD
+=======
+#finJeu{
+    overflow: hidden;
+}
+
+>>>>>>> 9b1eb355954e64b6f9e1a3c4786968b77fd69234
 button{
   width:200px;
   height:50px;  
@@ -192,8 +199,6 @@ img {
   animation-iteration-count: 1;
 }
 
-
-
 /* CSS WRAPPER JEU */
 
 #inputReponse{
@@ -340,15 +345,30 @@ input[type=range]:focus::-ms-fill-lower, input[type=range]:focus::-ms-fill-upper
   width: 200px;
 }
 
-#player{
-  display: none;
-
-}
 
 .shake{
   animation-name: shake;
   animation-duration: 0.2s;
 }
+
+
+
+#image80, #image20, #image60, #image40{
+    display: none;
+    margin: auto;
+    padding-bottom: 20px;
+    border-radius: 50px;
+    width: 600px;
+    animation-name: ZoomIn;
+    animation-duration: 0.8s;
+}
+
+
+#player{
+  display: none;
+
+}
+
 
 
 /* KEYFRAMES */
