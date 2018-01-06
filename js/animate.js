@@ -13,7 +13,7 @@ var randomColor;
 var trigger = true;
 var tabBgAChanger = ['document.body','wrapperJeu','finJeu'];
 
-var arrayChar = ["♩","♪","♫","♬","♭","♮","♯","ø","🎤","🎹","🎸","🎻","📯","🎷","🎺","🎧","🎼","🎶"];
+var arrayChar = ["♩","♪","♫","♬","♭","♮","♯","ø"];
 
 
 var randomColorMacaron;
@@ -70,11 +70,12 @@ function animate(){
 function changeBackground(){
   randomColor = Math.floor(Math.random()*16777215).toString(16);
  // console.log(randomColor);
-
-
-  document.body.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
+  /*document.body.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
   wrapperJeu.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
-  finJeu.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
+  finJeu.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';*/
+  document.body.style.background =  '#'+randomColor;
+  wrapperJeu.style.background =  '#'+randomColor;
+  finJeu.style.background =   '#'+randomColor;
 }
 
 

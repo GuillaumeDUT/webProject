@@ -116,6 +116,12 @@ function fetchData(){
     wrapperJeu.style.display ="block";
     //on effectue une copie des données pour pouvoir y accèder autre part que dans la réponse (vu  que c'est asyncrone)
     for(i in json.items){
+      for(var j=0;j<json.items[i]['snippet']['title'].length;j++){
+        if(json.items[i]['snippet']['title'][j] == '('){
+          json.items[i]['snippet']['title'] = json.items[i]['snippet']['title'].slice(0,j);
+        }
+      }
+      
       dataFromAPI.push([ json.items[i]['snippet']['resourceId']['videoId'] , json.items[i]['snippet']['title'] ]);
     }
     jeu();
