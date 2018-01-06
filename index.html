@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Web Project</title>
     <link href="css/main.css" type="text/css" rel="stylesheet"/>
-    <link href="css/animation.css" type="text/css" rel="stylesheet"/>
+      
+    <link href="css/animate.css" type="text/css" rel="stylesheet"/>
   </head>
   <body>
 
@@ -109,7 +110,7 @@
 
         <button id="skipButton" onclick="stopTick()">Skip</button>
         <button id="stopButton" onclick="stopTick()">Quitter le blindtest</button><br/>
-
+          <div class="runner"></div>
         <div id="player"></div>
       </div>
       <div id='barreProgressionMusique'></div>
@@ -118,6 +119,10 @@
     <div id="finJeu">
       <div class="wrapperCenter">
         <p>Merci d'avoir joué ! <br/>Vous avez trouvé : <span id="scoreFinal"></span> chansons sur <span id="nbTotalMusiques"></span> !<br/><button id="restart">Revenir à l'accueil</button></p>
+          <div class="pyro">
+    <div class="before"></div>
+    <div class="after"></div>
+</div>
       </div>
     </div>
     <div id="modalPopUp">

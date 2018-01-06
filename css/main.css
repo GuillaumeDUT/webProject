@@ -364,7 +364,9 @@ input[type=range]:focus::-ms-fill-upper {
   animation-duration: 0.2s;
 }
 
+
 /* KEYFRAMES */
+
 
 
 @keyframes logo{
@@ -433,3 +435,7 @@ input[type=range]:focus::-ms-fill-upper {
       opacity: 1;
       transform: scale(1,1);  }
 }
+
+
+
+
