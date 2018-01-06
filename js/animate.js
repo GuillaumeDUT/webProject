@@ -69,7 +69,7 @@ function animate(){
 
 function changeBackground(){
   randomColor = Math.floor(Math.random()*16777215).toString(16);
- // console.log(randomColor);
+  // console.log(randomColor);
   /*document.body.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
   wrapperJeu.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
   finJeu.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';*/
@@ -84,21 +84,28 @@ function popUpFaux(){
   var macaronFaux = document.createElement('div');
   randomPosXMacaron = Math.floor(Math.random() * (80 - 20) + 20);
   randomPosYMacaron = Math.floor(Math.random() * (80 - 20) + 20);
-  
+
   macaronFaux.setAttribute('class','macaronFaux wrapperCenter');
   macaronFaux.innerHTML = 'FAUX ! TB1';/*
   randomColorMacaron = Math.floor(Math.random()*16777215).toString(16); */
   //randomColorMacaron = randomColor;
   //console.log(randomColorMacaron)
-  
+
   macaronFaux.setAttribute('style','width:100px;height:100px;background-color:#00000020;border-radius:50px;color:white;position:absolute;top:'+randomPosXMacaron+'%;left:'+randomPosYMacaron+'%;line-height:100px;animation-name:fadeMacaron;animation-iteration-count:1;animation-duration:2s;box-shadow:0px 0px 5px white;');
   wrapperScore.appendChild(macaronFaux);
-  
+
   setTimeout(function(){
-    
+
     macaronFaux.parentNode.removeChild(macaronFaux);
 
 
   },2000);
 }
 
+function letsVaporwaveThisShit(){
+  var vaporandom = Math.floor(Math.random() * 6)
+  document.body.style.background =  'url("img/vaporshit'+vaporandom+'.gif")';
+  wrapperJeu.style.background =  'url("img/vaporshit'+vaporandom+'.gif")';
+  finJeu.style.background =   'url("img/vaporshit'+vaporandom+'.gif")';
+  console.log('V A P O R W A V E       W A S       T H E R E ')
+}

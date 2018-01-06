@@ -70,6 +70,10 @@ inputReponse.addEventListener('keyup',function(e){
   inputReponse.classList.remove("shake"); 
   //console.log(this.value)
   if (e.keyCode == 13) { 
+    if(inputReponse.value == 'vaporwave' || inputReponse.value == 'Vaporwave'  ){
+      letsVaporwaveThisShit();
+    }
+
     if ( verifiereponse(dataFromAPI[randomMusic][1],inputReponse.value) >= 0.5) 
     {
       reponseTrouvee();
@@ -77,6 +81,7 @@ inputReponse.addEventListener('keyup',function(e){
       popUpFaux();
       inputReponse.classList.add("shake");  
     }
+
     inputReponse.value=""; //Input vidé si mauvaise réponse, ça évite de tt reselectionner ou effacer
   }
 
@@ -121,7 +126,7 @@ function fetchData(){
           json.items[i]['snippet']['title'] = json.items[i]['snippet']['title'].slice(0,j);
         }
       }
-      
+
       dataFromAPI.push([ json.items[i]['snippet']['resourceId']['videoId'] , json.items[i]['snippet']['title'] ]);
     }
     jeu();

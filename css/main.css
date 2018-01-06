@@ -12,7 +12,11 @@ body, #wrapperJeu, #finJeu{
   background-color: #344e5c;
   width:100%;
   height:100vh;
+  background-position:center !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
 }
+
 button{
   width:200px;
   height:50px;  
@@ -188,11 +192,6 @@ img {
   animation-iteration-count: 1;
 }
 
-/*
-#player{
-display: none;
-}
-*/
 
 
 /* CSS WRAPPER JEU */
