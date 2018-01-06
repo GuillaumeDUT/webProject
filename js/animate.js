@@ -15,6 +15,11 @@ var tabBgAChanger = ['document.body','wrapperJeu','finJeu'];
 
 var arrayChar = ["♩","♪","♫","♬","♭","♮","♯","ø","🎤","🎹","🎸","🎻","📯","🎷","🎺","🎧","🎼","🎶"];
 
+
+var randomColorMacaron;
+var randomPosXMacaron;
+var randomPosYMacaron;
+
 logo.addEventListener('mouseenter',function(e){
   /* if(trigger){
     tickNotes = setInterval(animate,100);
@@ -71,3 +76,28 @@ function changeBackground(){
   wrapperJeu.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
   finJeu.style.background =  'radial-gradient(circle at center, #'+randomColor+', #000000)';
 }
+
+
+
+function popUpFaux(){
+  var macaronFaux = document.createElement('div');
+  randomPosXMacaron = Math.floor(Math.random() * (80 - 20) + 20);
+  randomPosYMacaron = Math.floor(Math.random() * (80 - 20) + 20);
+  
+  macaronFaux.setAttribute('class','macaronFaux wrapperCenter');
+  macaronFaux.innerHTML = 'FAUX ! TB1';/*
+  randomColorMacaron = Math.floor(Math.random()*16777215).toString(16); */
+  //randomColorMacaron = randomColor;
+  //console.log(randomColorMacaron)
+  
+  macaronFaux.setAttribute('style','width:100px;height:100px;background-color:#00000020;border-radius:50px;color:white;position:absolute;top:'+randomPosXMacaron+'%;left:'+randomPosYMacaron+'%;line-height:100px;animation-name:fadeMacaron;animation-iteration-count:1;animation-duration:2s;box-shadow:0px 0px 5px white;');
+  wrapperScore.appendChild(macaronFaux);
+  
+  setTimeout(function(){
+    
+    macaronFaux.parentNode.removeChild(macaronFaux);
+
+
+  },2000);
+}
+

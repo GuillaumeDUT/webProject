@@ -65,19 +65,21 @@ wrapperHomeContent.addEventListener('click',function(e){
 
 //ecoute ce qu'on tape
 inputReponse.addEventListener('keyup',function(e){
-  e.preventDefault();
-  wrapperJeu.classList.remove("shake");    
+  e.preventDefault();  
+
+  inputReponse.classList.remove("shake"); 
   //console.log(this.value)
-  if (e.keyCode == 13) {
+  if (e.keyCode == 13) { 
     if ( verifiereponse(dataFromAPI[randomMusic][1],inputReponse.value) >= 0.5) 
     {
       reponseTrouvee();
+    }else{
+      popUpFaux();
+      inputReponse.classList.add("shake");  
     }
-      
-    wrapperJeu.classList.add("shake");  
     inputReponse.value=""; //Input vidé si mauvaise réponse, ça évite de tt reselectionner ou effacer
   }
-    
+
 
 });
 
@@ -156,6 +158,7 @@ function stopVideo() {
 
 function jeu(){
   nbMusiques = dataFromAPI.length;   
+  scoreEnJeu.innerHTML = "0";
   jouerMusique();
 }
 
@@ -179,13 +182,13 @@ function jouerMusique(){
 
   player.playVideo();
   barreDeProgression.classList.add("animationProgressionMusique");    
-      
+
   tick = setInterval(tickPlayer,1000);
   tickPlayer();
 }
 
 function nextMusique(){
- barreDeProgression.classList.add("animationProgressionMusique");
+  barreDeProgression.classList.add("animationProgressionMusique");
   dataFromAPI.splice(randomMusic,1);
   jouerMusique();
 }
@@ -241,7 +244,7 @@ function reponseTrouvee(){
   scoreEnJeu.innerHTML = score;
   inputReponse.value = "";
   setTimeout(nextMusique,3000);
-    
+
 }
 
 function stopTick(){

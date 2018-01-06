@@ -418,3 +418,4 @@ input[type=range]:focus::-ms-fill-upper {
     transform: translate3d(10px, 0, 0);
   }
 }
+@keyframes fadeMacaron{100%{opacity:0;}}
