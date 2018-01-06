@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Web Project</title>
     <link href="css/main.css" type="text/css" rel="stylesheet"/>
-    <link href="css/animation.css" type="text/css" rel="stylesheet"/>
+      
+    <link href="css/animate.css" type="text/css" rel="stylesheet"/>
   </head>
   <body>
 
@@ -109,7 +110,7 @@
 
         <button id="skipButton" onclick="stopTick()">Skip</button>
         <button id="stopButton" onclick="stopTick()">Quitter le blindtest</button><br/>
-
+          <div class="runner"></div>
         <div id="player"></div>
       </div>
       <div id='barreProgressionMusique'></div>
@@ -118,17 +119,32 @@
     <div id="finJeu">
       <div class="wrapperCenter">
         <p>Merci d'avoir joué ! <br/>Vous avez trouvé : <span id="scoreFinal"></span> chansons sur <span id="nbTotalMusiques"></span> !<br/><button id="restart">Revenir à l'accueil</button></p>
+          <div class="pyro">
+    <div class="before"></div>
+    <div class="after"></div>
+</div>
       </div>
     </div>
     <div id="modalPopUp">
       <div id="modalContent" class="wrapperCenter">
         <div class="wrapperCenter" >
              <img src="img/warning.png" id="warning"> <br><br>
-          <p >Bonjour et bienvenue sur notre blindtest !</p><br>
-            <p>L'usage d'Adblock est vivement recommandé pour le bon fonctionnement du jeu. :) </p><br>
-          <p>
-            Amusez vous bien ! 
-          </p>
+          <p >Bonjour et bienvenue sur notre Blindtest !<br> Avant de commencer des petites précisions. </p>    
+            
+            L'usage d'Adblock est vivement recommandé pour le bon fonctionnement du jeu. :) <br>    
+          
+             La difficulté est représentée par une note allant de 1 à 5        
+          <img class="star" src="img/star.png" alt="etoile">    
+            <img class="star" src="img/star.png" alt="etoile">   
+            <img class="star" src="img/star.png" alt="etoile"> 
+            <img class="star" src="img/emptystar.png" alt="etoile vide">    
+            <img class="star" src="img/emptystar.png" alt="etoile vide">   <br>
+            Tu veux changer la couleur et la mettre à ton goût, Izzy, passe ta souris par dessus     
+            <img id="star" class="star" src="img/Headphones.png" alt="logoHeadphone"><br>
+            Tu peux toujours revenir la changer plus tard en utilisant 
+            <img id="star" class="star" src="img/home.png" alt="logoHeadphone">
+            
+            
           <p id="enleverModal">J'ai compris !</p>
           </div>
 
