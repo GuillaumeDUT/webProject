@@ -102,10 +102,47 @@ function popUpFaux(){
   },2000);
 }
 
+var vaporshit = document.getElementById('vaporshit');
+var tabVaporSongs = ['cU8HrO7XuiE','RQxDM2K-hd0','8GW6sLrK40k'];
+var vaporandom;
+var vaposong;
+var vaporTick
+var sadboi = document.getElementById('sadboi');
+var figure = document.getElementsByTagName('figure');
+var boutonVaporQuit = document.getElementsByName('main > button');
 function letsVaporwaveThisShit(){
-  var vaporandom = Math.floor(Math.random() * 6)
+  vaporandom = Math.floor(Math.random() * 5)
+  vaposong = Math.floor(Math.random() * 3);
+  finDuJeu();
+  vaporshit.style.display = "block";
+  player.cueVideoById({videoId:tabVaporSongs[vaposong],
+                     startSeconds:0,
+                     suggestedQuality:'small'});
+  player.unMute();
+  
+  vaporshit.style.background = 'url("img/vaporshit'+vaporandom+'.gif")';
   document.body.style.background =  'url("img/vaporshit'+vaporandom+'.gif")';
   wrapperJeu.style.background =  'url("img/vaporshit'+vaporandom+'.gif")';
   finJeu.style.background =   'url("img/vaporshit'+vaporandom+'.gif")';
-  console.log('V A P O R W A V E       W A S       T H E R E ')
+  console.log('V A P O R W A V E       W A S       T H E R E ');
+  
+  setTimeout(function(){player.playVideo();},1000);
+  vaporTick = setInterval(reminderPlayVapor, 2000);
+}
+
+function reminderPlayVapor(){
+  player.playVideo();
+  console.log('vaportick')
+}
+sadboi.addEventListener('click',function(e){
+  e.preventDefault();
+  figure[0].style.display = 'block';
+});
+
+function deleteCaptitalism(){
+  finJeu.style.display = 'none';
+  figure[0].style.display = 'none';
+  vaporshit.style.display = 'none';
+  clearInterval(vaporTick);
+  player.stopVideo();
 }

@@ -177,3 +177,81 @@
   80%, 99.9% {
     margin-top: 30%;
     margin-left: 80%; } }
+
+
+
+
+#vaporshit figure {
+  
+  font: 14px MS Sans Serif, Arial, sans-serif;
+  width: 500px;
+  margin: 50px auto;
+  border: 2px outset white;
+  padding: 3px;
+  background: #c0c0c0;
+  -webkit-box-shadow: 1px 1px black;
+          box-shadow: 1px 1px black;
+  display:none;
+  position:absolute;  
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+#vaporshit header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: -webkit-gradient(linear, left top, right top, from(#000282), to(#5e9fc9));
+  background: linear-gradient(90deg, #000282, #5e9fc9);
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 3px;
+}
+#vaporshit header p{
+  line-height: 28px;
+}
+
+#vaporshit main {
+  text-align: center;
+  paddin:20px;
+  color :black !important;
+}
+
+#vaporshit span {
+  display: inline-block;
+}
+
+#vaporshit button {
+  color :black !important;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 18px;
+  width: 20px;
+  text-align: center;
+  padding: 0;
+  background: #c0c0c0;
+  border: 0;
+  height:26px !important;
+  border: thin inset black;
+  -webkit-box-shadow: inset 1px 1px white, 1px 1px black;
+          box-shadow: inset 1px 1px white, 1px 1px black;
+}
+#vaporshit main button {
+  min-width: 100px;
+  height:50px;
+  padding: 4px 20px;
+  margin: 10px auto;
+}
+#vaporshit main button:first-letter {
+  text-decoration: underline;
+}
+#vaporshit main span{
+  margin-bottom:50px;
+  margin-top:50px;
+}

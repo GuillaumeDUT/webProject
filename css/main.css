@@ -7,7 +7,7 @@ body{
   color:white;
   font-family: 'Anton', sans-serif;
 }
-body, #wrapperJeu, #finJeu{ 
+body, #wrapperJeu, #finJeu, #vaporshit{ 
   font-family: sans-serif;
   background-color: #344e5c;
   width:100%;
@@ -19,7 +19,7 @@ body, #wrapperJeu, #finJeu{
 
 
 #finJeu{
-    overflow: hidden;
+  overflow: hidden;
 }
 
 button{
@@ -35,7 +35,7 @@ button:hover{
   background-color:rgba(0, 0, 0, 0.14);
 }
 
-button, #logo, .dataOverlay,#enleverModal {
+button, #logo, .dataOverlay,#enleverModal, #sadboi {
   cursor:pointer;
 }
 
@@ -71,7 +71,7 @@ button, #logo, .dataOverlay,#enleverModal {
   transform: translate3d(-50%,0,0);
 }
 
-#wrapperJeu, #finJeu {
+#wrapperJeu, #finJeu, #vaporshit{
   display:none;
   position:absolute;
   top:0;
@@ -221,8 +221,8 @@ img {
   position:absolute;
   top:0;
   left:0;
-    animation-name: ZoomIn;
-    animation-duration: 0.8s;
+  animation-name: ZoomIn;
+  animation-duration: 0.8s;
 }
 #modalContent {
   height:600px;
@@ -352,13 +352,13 @@ input[type=range]:focus::-ms-fill-lower, input[type=range]:focus::-ms-fill-upper
 
 
 #image80, #image20, #image60, #image40{
-    display: none;
-    margin: auto;
-    padding-bottom: 20px;
-    border-radius: 50px;
-    width: 600px;
-    animation-name: ZoomIn;
-    animation-duration: 0.8s;
+  display: none;
+  margin: auto;
+  padding-bottom: 20px;
+  border-radius: 50px;
+  width: 600px;
+  animation-name: ZoomIn;
+  animation-duration: 0.8s;
 }
 
 
@@ -367,8 +367,21 @@ input[type=range]:focus::-ms-fill-lower, input[type=range]:focus::-ms-fill-upper
 
 }
 
+#vaporshit{
+  display:none;
+}
 
-
+#gun, #reversedGun {
+	position:relative;
+}
+#gun{
+  left:0px;
+}
+#reversedGun {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+   right:0;
+}
 /* KEYFRAMES */
 
 
@@ -430,14 +443,14 @@ input[type=range]:focus::-ms-fill-lower, input[type=range]:focus::-ms-fill-upper
 
 
 @keyframes ZoomIn{
- 0%{
+  0%{
     opacity: 0.5; 
-   transform: scale(0,0);
-    }
-    
+    transform: scale(0,0);
+  }
+
   100%{
-      opacity: 1;
-      transform: scale(1,1);  }
+    opacity: 1;
+    transform: scale(1,1);  }
 }
 
 

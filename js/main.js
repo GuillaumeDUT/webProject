@@ -77,6 +77,7 @@ inputReponse.addEventListener('keyup',function(e){
   if (e.keyCode == 13) { 
     if(inputReponse.value == 'vaporwave' || inputReponse.value == 'Vaporwave'  ){
       letsVaporwaveThisShit();
+      return 0;
     }
 
     if ( verifiereponse(dataFromAPI[randomMusic][1],inputReponse.value) >= 0.5) 
@@ -216,7 +217,7 @@ function finDuJeu(){
   wrapperJeu.style.display  = "none";
   scoreFinal.innerHTML = score;
   nbTotalMusiques.innerHTML = nbMusiques;
-    ratiotrouvees();
+  ratiotrouvees();
   finJeu.style.display = "block";
   score = 0;
   player.mute()
@@ -278,21 +279,21 @@ function setVolume(){
 }
 
 function ratiotrouvees(){
-    
-    ratio=(score/nbMusiques)*100;
-    if (ratio<20){
-        image20.style.display="block"
-        }
-    if(ratio>20 && ratio<40){
-        image40.style.display="block"
-    }
-    if (ratio>40 && ratio<60){
-        image60.style.display="block"
-    }
-    if (ratio>80){
-        image80.style.display="block"    
-    }
-    console.log(ratio);
+
+  ratio=(score/nbMusiques)*100;
+  if (ratio<20){
+    image20.style.display="block"
+  }
+  if(ratio>20 && ratio<40){
+    image40.style.display="block"
+  }
+  if (ratio>40 && ratio<60){
+    image60.style.display="block"
+  }
+  if (ratio>80){
+    image80.style.display="block"    
+  }
+  console.log(ratio);
 }
 //############## DISTANCE DE LEVHENMACHIN LA
 
