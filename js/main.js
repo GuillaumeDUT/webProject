@@ -19,7 +19,7 @@ var image80=document.getElementById('image80');
 var image20=document.getElementById('image20');
 var image60=document.getElementById('image60');
 var image40=document.getElementById('image40');
-var ratio=0;
+
 
 var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
 var ytPlaylistId ="";
@@ -111,8 +111,12 @@ stopButton.addEventListener('click',function(e){
 });
 
 restart.addEventListener('click',function(e){
-  e.preventDefault();
-  finJeu.style.display  = "none";
+    e.preventDefault();
+    finJeu.style.display  = "none";
+    image20.style.display="none"  ;
+    image40.style.display="none"  ;
+    image60.style.display="none"  ;
+    image80.style.display="none"  ;
 });
 
 
@@ -279,21 +283,20 @@ function setVolume(){
 }
 
 function ratiotrouvees(){
-
-  ratio=(score/nbMusiques)*100;
-  if (ratio<20){
-    image20.style.display="block"
-  }
-  if(ratio>20 && ratio<40){
-    image40.style.display="block"
-  }
-  if (ratio>40 && ratio<60){
-    image60.style.display="block"
-  }
-  if (ratio>80){
-    image80.style.display="block"    
-  }
-  console.log(ratio);
+    var ratio=((score/nbMusiques)*100);
+    if ((ratio>=0 && ratio<=20) == true){
+        image20.style.display="block"
+        }
+    if( (ratio<=40 && ratio>20) == true){
+        image40.style.display="block"
+    }
+    if ((ratio>40 && ratio<=60) == true ){
+        image60.style.display="block"
+    }
+    if ((ratio>60) == true){
+        image80.style.display="block"    
+    }
+    console.log(ratio);
 }
 //############## DISTANCE DE LEVHENMACHIN LA
 
