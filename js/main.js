@@ -20,9 +20,6 @@ var image20=document.getElementById('image20');
 var image60=document.getElementById('image60');
 var image40=document.getElementById('image40');
 var form= document.getElementById('form');
-
-
-
 var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
 var ytPlaylistId ="";
 var dataFromAPI = [];
@@ -38,8 +35,23 @@ var arrayPlaylistId={
   "monbonentendeur":"PL5cn0JmhPoTFcr1R3mQq6wuES4QW72owN",
   "ghibli":"PL5cn0JmhPoTFMl7x_WnknWpx6hGFc7axX",    
 };
-
+var n = [
+  '',
+  ' .d8888b.  888                       888',
+  'd88P  Y88b 888                       888',
+  'Y88b.      888                       888',
+  ' "Y888b.   888888  .d88b.  88888b.   888',
+  '    "Y88b. 888    d88""88b 888 "88b  888',
+  '      "888 888    888  888 888  888  Y8P',
+  'Y88b  d88P Y88b.  Y88..88P 888 d88P',
+  ' "Y8888P"   "Y888  "Y88P"  88888P"   888',
+  '                           888',
+  '                           888',
+  '                           888',
+  'Tricher c\'est mal, alors arrête de vouloir trouver les infos dans la console. (N\'est ce pas Maximilien ?) '
+];
 // PASSER À LA HOMEPAGE
+
 popUp.addEventListener('click',function(e){
   e.preventDefault();
   modal.style.display = "none";
@@ -49,6 +61,9 @@ logo.addEventListener('click',function(e){
   clearInterval(tickNotes);
   Lancement.style.display = "none";
   wrapperHomeContent.style.display = "block";
+  for(var i=0;i<n.length;i++){
+    console.log(n[i]);
+  }
 });
 
 // REVENIR À LA PAGE DE LANCEMENT
@@ -115,12 +130,12 @@ stopButton.addEventListener('click',function(e){
 
 //clear l'écran et revient au choix de playlists
 restart.addEventListener('click',function(e){
-    e.preventDefault();
-    finJeu.style.display= "none";
-    image20.style.display="none"  ;
-    image40.style.display="none"  ;
-    image60.style.display="none"  ;
-    image80.style.display="none"  ;
+  e.preventDefault();
+  finJeu.style.display= "none";
+  image20.style.display="none"  ;
+  image40.style.display="none"  ;
+  image60.style.display="none"  ;
+  image80.style.display="none"  ;
 });
 
 
@@ -219,7 +234,7 @@ function nextMusique(){
 
 //on stop la vidéo, clear l'itération chaque seconde et on affiche la fin du jeu avec le score + la bannière en fonction du ratio. Puisque parfois l'api bug  et continue de relancer la vidéo, on mute le player au cas où
 function finDuJeu(){
-  
+
   clearInterval(tick);
   stopVideo();
   dataFromAPI = [];
@@ -283,20 +298,20 @@ function setVolume(){
 }
 
 function ratiotrouvees(){
-    var ratio=((score/nbMusiques)*100);
-    if ((ratio>=0 && ratio<=20) == true){
-        image20.style.display="block"
-        }
-    if( (ratio<=40 && ratio>20) == true){
-        image40.style.display="block"
-    }
-    if ((ratio>40 && ratio<=60) == true ){
-        image60.style.display="block"
-    }
-    if ((ratio>60) == true){
-        image80.style.display="block"    
-    }
-    console.log(ratio);
+  var ratio=((score/nbMusiques)*100);
+  if ((ratio>=0 && ratio<=20) == true){
+    image20.style.display="block"
+  }
+  if( (ratio<=40 && ratio>20) == true){
+    image40.style.display="block"
+  }
+  if ((ratio>40 && ratio<=60) == true ){
+    image60.style.display="block"
+  }
+  if ((ratio>60) == true){
+    image80.style.display="block"    
+  }
+  console.log(ratio);
 }
 //############## DISTANCE DE LEVHENMACHIN  (check la distance de caractères entre la réponse et l'input par le joueur)
 
