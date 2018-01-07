@@ -19,6 +19,8 @@ var image80=document.getElementById('image80');
 var image20=document.getElementById('image20');
 var image60=document.getElementById('image60');
 var image40=document.getElementById('image40');
+var form= document.getElementById('form');
+
 
 
 var ytApiKey = "AIzaSyBVzYEFC1rc0Z5YVrEiICQcq0eAAVKsGGY";
@@ -67,7 +69,9 @@ wrapperHomeContent.addEventListener('click',function(e){
   }
 });
 
-
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+})
 //ecoute ce qu'on tape
 inputReponse.addEventListener('keyup',function(e){
   e.preventDefault();  
@@ -112,7 +116,7 @@ stopButton.addEventListener('click',function(e){
 
 restart.addEventListener('click',function(e){
     e.preventDefault();
-    finJeu.style.display  = "none";
+    finJeu.style.display= "none";
     image20.style.display="none"  ;
     image40.style.display="none"  ;
     image60.style.display="none"  ;
