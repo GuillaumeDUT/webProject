@@ -382,6 +382,11 @@ input[type=range]:focus::-ms-fill-lower, input[type=range]:focus::-ms-fill-upper
   transform: scaleX(-1);
    right:0;
 }
+
+
+#modalmediaq{
+    display: none;
+}
 /* KEYFRAMES */
 
 
@@ -455,4 +460,15 @@ input[type=range]:focus::-ms-fill-lower, input[type=range]:focus::-ms-fill-upper
 
 
 
-
+@media (max-width: 768px){
+    #Lancement, #Modalcontent, #modalPopUp, #wrapperHomeContent,#finJeu,#vaporshit,#wrapperJeu{
+        display: none;
+    }
+    #modalmediaq{
+        padding-top: 20px;
+        display:block;
+    }
+    body{
+        background-color: #0391d2;
+    }
+}
