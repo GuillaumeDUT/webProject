@@ -75,7 +75,6 @@ form.addEventListener('submit',function(e){
 //ecoute ce qu'on tape
 inputReponse.addEventListener('keyup',function(e){
   e.preventDefault();  
-
   inputReponse.classList.remove("shake"); 
   //console.log(this.value)
   if (e.keyCode == 13) { 
@@ -83,7 +82,6 @@ inputReponse.addEventListener('keyup',function(e){
       letsVaporwaveThisShit();
       return 0;
     }
-
     if ( verifiereponse(dataFromAPI[randomMusic][1],inputReponse.value) >= 0.5) 
     {
       reponseTrouvee();
@@ -98,7 +96,7 @@ inputReponse.addEventListener('keyup',function(e){
 
 });
 
-
+//event listener pour empêcher l'utilisateur de cliquer plusieurs fois et pour trigger la fonction skip
 skipButton.addEventListener('click',function(e){
   e.preventDefault();
   barreDeProgression.classList.remove("animationProgressionMusique");
@@ -107,6 +105,7 @@ skipButton.addEventListener('click',function(e){
   musiqueNonTrouvee();
 });
 
+//trigger la fin du jeu
 stopButton.addEventListener('click',function(e){
   e.preventDefault();
   barreDeProgression.classList.remove("animationProgressionMusique");
@@ -114,6 +113,7 @@ stopButton.addEventListener('click',function(e){
   finDuJeu();
 });
 
+//clear l'écran et revient au choix de playlists
 restart.addEventListener('click',function(e){
     e.preventDefault();
     finJeu.style.display= "none";
@@ -140,19 +140,16 @@ function fetchData(){
           json.items[i]['snippet']['title'] = json.items[i]['snippet']['title'].slice(0,j);
         }
       }
-
       dataFromAPI.push([ json.items[i]['snippet']['resourceId']['videoId'] , json.items[i]['snippet']['title'] ]);
     }
     jeu();
   });
-
 }
 //fonctions obligatoires pour l'utilisation de l'api Iframe
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
 var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
@@ -180,6 +177,8 @@ function onPlayerStateChange(event) {
 function stopVideo() {
   player.stopVideo();
 }
+//fin fonctions obligatoires de l'api Iframe
+
 
 function jeu(){
   nbMusiques = dataFromAPI.length;   
@@ -187,6 +186,7 @@ function jeu(){
   jouerMusique();
 }
 
+//on enlève l'attribut disabled du button pour qu'on puisse de nouveau skip + on tire au sort la prochaine musique et on la cue avec les paramètres de début et de fin de vidéo. Ensuite on lance l'itération chaque seconde de la fonction tickPlayer
 function jouerMusique(){
   titreMusique.innerHTML = '';
   skipButton.removeAttribute('disabled');
@@ -204,23 +204,24 @@ function jouerMusique(){
     endSeconds:60,
     suggestedQuality:'small',
   });
-
   player.playVideo();
   barreDeProgression.classList.add("animationProgressionMusique");    
-
   tick = setInterval(tickPlayer,1000);
   tickPlayer();
 }
 
+//enlève la musique du tableau qui joue en aléatoire + trigger la prochaine musique
 function nextMusique(){
   barreDeProgression.classList.add("animationProgressionMusique");
   dataFromAPI.splice(randomMusic,1);
   jouerMusique();
 }
 
+//on stop la vidéo, clear l'itération chaque seconde et on affiche la fin du jeu avec le score + la bannière en fonction du ratio. Puisque parfois l'api bug  et continue de relancer la vidéo, on mute le player au cas où
 function finDuJeu(){
-  stopVideo();
+  
   clearInterval(tick);
+  stopVideo();
   dataFromAPI = [];
   wrapperJeu.style.display  = "none";
   scoreFinal.innerHTML = score;
@@ -233,28 +234,23 @@ function finDuJeu(){
 
 
 //faut clear la variable tick quand on veut pas que cette fonction recommence
+
 function tickPlayer(){
   player.playVideo();
-  if(player.getCurrentTime() >= 40.01){
-    if(player.getPlayerState() ==  1){
-      console.log('tick progression')
-    }
-  }
-
-  if(player.getCurrentTime() >= 58){
+  //si on a dépassé le temps 
+  if(player.getCurrentTime() >= 59){
     barreDeProgression.classList.remove("animationProgressionMusique");
-    console.log('times out')
+    //console.log('times out')
     clearInterval(tick);
     musiqueNonTrouvee();
     return 0;
   }
   if(player.getPlayerState() ==  3){
     //parfois youtube mets la vidéo en player.getPlayerState -1  ou en 3 du coup faut relancer
-    console.log('bug de youcacatube qui met en buffering la vidéo :( ');
+    //console.log('bug de youcacatube qui met en buffering la vidéo :( ');
     player.seekTo(40);
   }
   setVolume();
-  console.log('tick');
 }
 
 function musiqueNonTrouvee(){
@@ -262,6 +258,7 @@ function musiqueNonTrouvee(){
   setTimeout(nextMusique,5000);
 }
 
+//on affiche le titre, augmente le score et trigger la fonction prochaine musique 3s après
 function reponseTrouvee(){
   player.pauseVideo();
   barreDeProgression.classList.remove("animationProgressionMusique");
@@ -270,7 +267,6 @@ function reponseTrouvee(){
   scoreEnJeu.innerHTML = score;
   inputReponse.value = "";
   setTimeout(nextMusique,3000);
-
 }
 
 function stopTick(){
@@ -302,7 +298,7 @@ function ratiotrouvees(){
     }
     console.log(ratio);
 }
-//############## DISTANCE DE LEVHENMACHIN LA
+//############## DISTANCE DE LEVHENMACHIN  (check la distance de caractères entre la réponse et l'input par le joueur)
 
 
 function verifiereponse(s1, s2) {
