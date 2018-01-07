@@ -461,7 +461,7 @@ input[type=range]:focus::-ms-fill-lower, input[type=range]:focus::-ms-fill-upper
 
 
 @media (max-width: 768px){
-    #Lancement, #Modalcontent, #modalPopUp, #wrapperHomeContent,#finJeu,#vaporshit,#wrapperJeu{
+    .Lancement, #Modalcontent, #modalPopUp, #wrapperHomeContent,#finJeu,#vaporshit,#wrapperJeu{
         display: none;
     }
     #modalmediaq{
